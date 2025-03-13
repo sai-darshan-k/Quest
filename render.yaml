@@ -1,0 +1,11 @@
+services:
+  - type: static
+    name: kissan-40
+    env: static
+    rootDir: .
+    buildCommand: "" # No build needed for pure HTML
+    staticPublishPath: . # Serve from root
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
