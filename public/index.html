@@ -43,17 +43,6 @@
             margin-top: 10px;
             opacity: 0.9;
         }
-        .confidential-notice {
-            background: #e8f5e9;
-            padding: 15px;
-            text-align: center;
-            border-radius: 10px;
-            margin: 20px 0;
-            font-size: 1.1em;
-            font-weight: 600;
-            color: #2e7d32;
-            border: 2px solid #7cb342;
-        }
         .progress-bar {
             width: 0%;
             height: 10px;
@@ -215,418 +204,236 @@
             content: " *";
             color: red;
         }
-        .language-toggle {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .language-toggle button {
-            background: #7cb342;
-            padding: 10px 20px;
-            font-size: 1em;
-            border: none;
-            color: #fff;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .language-toggle button:hover {
-            background: #558b2f;
-        }
-        .en, .kn {
-            display: none;
-        }
-        .en.active, .kn.active {
-            display: block;
-        }
     </style>
 </head>
 <body>
     <!-- Main Form Container -->
     <div id="mainForm" class="container">
         <header>
-            <h1 class="en active">KISSAN 4.0: Your Farming Revolution Starts Here!</h1>
-            <h1 class="kn">ಕಿಸ್ಸಾನ್ 4.0: ನಿಮ್ಮ ಕೃಷಿ ಬದಲಾವಣೆ ಇಲ್ಲಿಂದ ಶುರು!</h1>
-            <p class="header-subtitle en active">Join thousands of farmers unlocking smarter, richer harvests!</p>
-            <p class="header-subtitle kn">ಸಾವಿರ ರೈತರ ಜೊತೆ ಸೇರಿ, ಒಳ್ಳೆ ಬೆಳೆಗೆ ದಾರಿ ಮಾಡಿ!</p>
+            <h1>KISSAN 4.0: Your Farming Revolution Starts Here!</h1>
+            <p class="header-subtitle">Join thousands of farmers unlocking smarter, richer harvests!</p>
         </header>
-
-        <div class="language-toggle">
-            <button onclick="toggleLanguage('en')">English</button>
-            <button onclick="toggleLanguage('kn')">ಕನ್ನಡ (Kannada)</button>
-        </div>
-
-        <div class="confidential-notice">
-            <span class="en active">100% Confidential – Your data is safe with us!</span>
-            <span class="kn">100% ಗುಪ್ತ - ನಿಮ್ಮ ಮಾಹಿತಿ ನಮ್ಮ ಬಳಿ ಸೇಫ್ ಆಗಿರುತ್ತೆ!</span>
-        </div>
 
         <div class="progress-bar" id="progressBar"></div>
 
         <div class="intro">
-            <p class="en active"><strong>You work hard to feed the nation.</strong> Now, let KISSAN 4.0 work hard for YOU!</p>
-            <p class="kn"><strong>ನೀವು ದೇಶಕ್ಕೆ ಆಹಾರ ಕೊಡಲು ಕಷ್ಟಪಡ್ತೀರಿ.</strong> ಈಗ ಕಿಸ್ಸಾನ್ 4.0 ನಿಮಗಾಗಿ ಕೆಲಸ ಮಾಡಲಿ!</p>
-            <p class="en active">Take 5 minutes to answer a few questions and unlock FREE tools, expert advice, and cash rewards.</p>
-            <p class="kn">5 ನಿಮಿಷ ಕೊಟ್ಟು ಕೆಲವು ಪ್ರಶ್ನೆಗೆ ಉತ್ತರ ಕೊಡಿ, ಉಚಿತ ಸಾಧನ, ಸಲಹೆ, ಹಣದ ಬಹುಮಾನ ಪಡೆಯಿರಿ.</p>
-            <p class="en active"><em>Limited Offer: First 500 farmers get a FREE soil testing kit!</em></p>
-            <p class="kn"><em>ಮೊದಲ 500 ರೈತರಿಗೆ ಉಚಿತ ಮಣ್ಣು ಟೆಸ್ಟ್ ಕಿಟ್ ಕೊಡ್ತೀವಿ!</em></p>
+            <p><strong>You work hard to feed the nation.</strong> Now, let KISSAN 4.0 work hard for YOU!</p>
+            <p>Take 5 minutes to answer a few questions and unlock FREE tools, expert advice, and cash rewards.</p>
+            <p><em>Limited Offer: First 500 farmers get a FREE soil testing kit!</em></p>
         </div>
 
         <form id="farmerSurvey" onsubmit="submitForm(event)">
             <!-- Initial Questions -->
             <div class="form-group">
-                <label for="feeling" class="required">
-                    <span class="en active">How are you today, farmer?</span>
-                    <span class="kn">ನೀವು ಇವತ್ತು ರೈತರಾಗಿ ಹೇಗಿದ್ದೀರಿ?</span>
-                </label>
+                <label for="feeling" class="required">How are you today, farmer?</label>
                 <select id="feeling" name="feeling" required>
-                    <option value="" class="en active">Tell us how you feel</option>
-                    <option value="" class="kn">ನೀವು ಹೇಗಿದ್ದೀರಿ ಹೇಳಿ</option>
-                    <option value="Great" class="en active">Great – Ready to grow!</option>
-                    <option value="Great" class="kn">ಒಳ್ಳೆಯದಾಗಿದೆ - ಬೆಳೆಯೋಕೆ ರೆಡಿ!</option>
-                    <option value="Good" class="en active">Good – Steady as always</option>
-                    <option value="Good" class="kn">ಚೆನ್ನಾಗಿದೆ - ಎಂದಿನಂತೆ ಓಕೆ</option>
-                    <option value="Okay" class="en active">Okay – Could use some help</option>
-                    <option value="Okay" class="kn">ಸರಿ ಇದೆ - ಸ್ವಲ್ಪ ಹೆಲ್ಪ್ ಬೇಕು</option>
-                    <option value="Not good" class="en active">Not good – Facing challenges</option>
-                    <option value="Not good" class="kn">ಚೆನ್ನಾಗಿಲ್ಲ - ಪ್ರಾಬ್ಲಮ್ ಎದುರಾಗ್ತಿದೆ</option>
-                    <option value="Struggling" class="en active">Struggling – Need solutions now</option>
-                    <option value="Struggling" class="kn">ಕಷ್ಟದಲ್ಲಿದೀನಿ - ಈಗಲೇ ದಾರಿ ಬೇಕು</option>
+                    <option value="">Tell us how you feel</option>
+                    <option value="Great">Great – Ready to grow!</option>
+                    <option value="Good">Good – Steady as always</option>
+                    <option value="Okay">Okay – Could use some help</option>
+                    <option value="Not good">Not good – Facing challenges</option>
+                    <option value="Struggling">Struggling – Need solutions now</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label class="required">
-                    <span class="en active">Are you a farmer?</span>
-                    <span class="kn">ನೀವು ರೈತನಾ?</span>
-                </label>
+                <label class="required">Are you a farmer?</label>
                 <div class="radio-group">
                     <div class="radio-option">
                         <input type="radio" id="isFarmerYes" name="isFarmer" value="Yes" required>
-                        <label for="isFarmerYes">
-                            <span class="en active">Yes, I’m a proud farmer!</span>
-                            <span class="kn">ಹೌದು, ನಾನು ರೈತ, ಹೆಮ್ಮೆ ಇದೆ!</span>
-                        </label>
+                        <label for="isFarmerYes">Yes, I’m a proud farmer!</label>
                     </div>
                     <div class="radio-option">
                         <input type="radio" id="isFarmerNo" name="isFarmer" value="No">
-                        <label for="isFarmerNo">
-                            <span class="en active">No, but I’m part of the farming world</span>
-                            <span class="kn">ಇಲ್ಲ, ಆದರೆ ಕೃಷಿ ಕೆಲಸದಲ್ಲಿ ಇದ್ದೀನಿ</span>
-                        </label>
+                        <label for="isFarmerNo">No, but I’m part of the farming world</label>
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="required">
-                    <span class="en active">Is your farming currently profitable?</span>
-                    <span class="kn">ನಿಮ್ಮ ಕೃಷಿ ಈಗ ಲಾಭ ಕೊಡ್ತಿದೆಯಾ?</span>
-                </label>
+                <label class="required">Is your farming currently profitable?</label>
                 <div class="radio-group">
                     <div class="radio-option">
                         <input type="radio" id="profitableYes" name="profitable" value="Profitable" required>
-                        <label for="profitableYes">
-                            <span class="en active">Yes, it’s profitable</span>
-                            <span class="kn">ಹೌದು, ಲಾಭ ಇದೆ</span>
-                        </label>
+                        <label for="profitableYes">Yes, it’s profitable</label>
                     </div>
                     <div class="radio-option">
                         <input type="radio" id="profitableBreakeven" name="profitable" value="Breakeven">
-                        <label for="profitableBreakeven">
-                            <span class="en active">Breaking even</span>
-                            <span class="kn">ಸರಿ ಸರಿ ಇದೆ, ಲಾಭ-ನಷ್ಟ ಇಲ್ಲ</span>
-                        </label>
+                        <label for="profitableBreakeven">Breaking even</label>
                     </div>
                     <div class="radio-option">
                         <input type="radio" id="profitableNo" name="profitable" value="Loss">
-                        <label for="profitableNo">
-                            <span class="en active">Currently facing losses</span>
-                            <span class="kn">ಈಗ ನಷ್ಟ ಆಗ್ತಿದೆ</span>
-                        </label>
+                        <label for="profitableNo">Currently facing losses</label>
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="required">
-                    <span class="en active">Do you use any technology for farming?</span>
-                    <span class="kn">ಕೃಷಿಗೆ ಟೆಕ್ ಯೂಸ್ ಮಾಡ್ತೀರಾ?</span>
-                </label>
+                <label class="required">Do you use any technology for farming?</label>
                 <div class="radio-group">
                     <div class="radio-option">
                         <input type="radio" id="techYes" name="useTech" value="Yes" required>
-                        <label for="techYes">
-                            <span class="en active">Yes</span>
-                            <span class="kn">ಹೌದು</span>
-                        </label>
+                        <label for="techYes">Yes</label>
                     </div>
                     <div class="radio-option">
                         <input type="radio" id="techNo" name="useTech" value="No">
-                        <label for="techNo">
-                            <span class="en active">No</span>
-                            <span class="kn">ಇಲ್ಲ</span>
-                        </label>
+                        <label for="techNo">No</label>
                     </div>
                 </div>
             </div>
 
             <!-- Basic Information -->
             <div class="form-group">
-                <label for="name" class="required">
-                    <i class="fas fa-user"></i>
-                    <span class="en active">Your Name</span>
-                    <span class="kn">ನಿಮ್ಮ ಹೆಸರು</span>
-                </label>
-                <input type="text" id="name" name="name" required placeholder="ನಿಮ್ಮ ಹೆಸರು ಬರೆಯಿರಿ">
+                <label for="name" class="required"><i class="fas fa-user"></i> Your Name</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your name">
             </div>
 
             <div class="form-group">
-                <label for="phone" class="required">
-                    <i class="fas fa-phone"></i>
-                    <span class="en active">Mobile Number</span>
-                    <span class="kn">ನಿಮ್ಮ ಫೋನ್ ನಂಬರ್</span>
-                </label>
-                <input type="tel" id="phone" name="phone" required placeholder="ನಿಮ್ಮ ನಂಬರ್ ಬರೆಯಿರಿ">
+                <label for="phone" class="required"><i class="fas fa-phone"></i> Mobile Number</label>
+                <input type="tel" id="phone" name="phone" required placeholder="Enter your number">
             </div>
 
             <div class="form-group">
-                <label for="state" class="required">
-                    <span class="en active">State</span>
-                    <span class="kn">ನಿಮ್ಮ ರಾಜ್ಯ</span>
-                </label>
+                <label for="state" class="required">State</label>
                 <select id="state" name="state" required onchange="checkWhatsAppEligibility()">
-                    <option value="" class="en active">Select your state</option>
-                    <option value="" class="kn">ನಿಮ್ಮ ರಾಜ್ಯ ಆರಿಸಿ</option>
-                    <option value="Karnataka" class="en active">Karnataka</option>
-                    <option value="Karnataka" class="kn">ಕರ್ನಾಟಕ</option>
-                    <option value="Andhra Pradesh" class="en active">Andhra Pradesh</option>
-                    <option value="Andhra Pradesh" class="kn">ಆಂಧ್ರ ಪ್ರದೇಶ</option>
-                    <option value="Tamil Nadu" class="en active">Tamil Nadu</option>
-                    <option value="Tamil Nadu" class="kn">ತಮಿಳುನಾಡು</option>
-                    <option value="Kerala" class="en active">Kerala</option>
-                    <option value="Kerala" class="kn">ಕೇರಳ</option>
-                    <option value="Maharashtra" class="en active">Maharashtra</option>
-                    <option value="Maharashtra" class="kn">ಮಹಾರಾಷ್ಟ್ರ</option>
-                    <option value="Gujarat" class="en active">Gujarat</option>
-                    <option value="Gujarat" class="kn">ಗುಜರಾತ್</option>
-                    <option value="Telangana" class="en active">Telangana</option>
-                    <option value="Telangana" class="kn">ತೆಲಂಗಾಣ</option>
-                    <option value="Madhya Pradesh" class="en active">Madhya Pradesh</option>
-                    <option value="Madhya Pradesh" class="kn">ಮಧ್ಯಪ್ರದೇಶ</option>
-                    <option value="Rajasthan" class="en active">Rajasthan</option>
-                    <option value="Rajasthan" class="kn">ರಾಜಸ್ಥಾನ</option>
-                    <option value="Punjab" class="en active">Punjab</option>
-                    <option value="Punjab" class="kn">ಪಂಜಾಬ್</option>
-                    <option value="Haryana" class="en active">Haryana</option>
-                    <option value="Haryana" class="kn">ಹರಿಯಾಣ</option>
-                    <option value="Uttar Pradesh" class="en active">Uttar Pradesh</option>
-                    <option value="Uttar Pradesh" class="kn">ಉತ್ತರ ಪ್ರದೇಶ</option>
-                    <option value="Bihar" class="en active">Bihar</option>
-                    <option value="Bihar" class="kn">ಬಿಹಾರ</option>
-                    <option value="West Bengal" class="en active">West Bengal</option>
-                    <option value="West Bengal" class="kn">ಪಶ್ಚಿಮ ಬಂಗಾಳ</option>
-                    <option value="Odisha" class="en active">Odisha</option>
-                    <option value="Odisha" class="kn">ಒಡಿಶಾ</option>
-                    <option value="Other" class="en active">Other</option>
-                    <option value="Other" class="kn">ಬೇರೆ</option>
+                    <option value="">Select your state</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="Telangana">Telangana</option>
+                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="Haryana">Haryana</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Bihar">Bihar</option>
+                    <option value="West Bengal">West Bengal</option>
+                    <option value="Odisha">Odisha</option>
+                    <option value="Other">Other</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="district" class="required">
-                    <span class="en active">District</span>
-                    <span class="kn">ನಿಮ್ಮ ಜಿಲ್ಲೆ</span>
-                </label>
-                <input type="text" id="district" name="district" required placeholder="ನಿಮ್ಮ ಜಿಲ್ಲೆ ಬರೆಯಿರಿ">
+                <label for="district" class="required">District</label>
+                <input type="text" id="district" name="district" required placeholder="Enter your district">
             </div>
 
             <div class="form-group">
-                <label for="village" class="required">
-                    <span class="en active">Village</span>
-                    <span class="kn">ನಿಮ್ಮ ಊರು</span>
-                </label>
-                <input type="text" id="village" name="village" required placeholder="ನಿಮ್ಮ ಊರು ಬರೆಯಿರಿ">
+                <label for="village" class="required">Village</label>
+                <input type="text" id="village" name="village" required placeholder="Enter your village">
             </div>
 
             <!-- Farming Profile -->
             <div class="form-group">
-                <label for="landSize">
-                    <span class="en active">How much land do you cultivate (in acres)?</span>
-                    <span class="kn">ಎಷ್ಟು ಜಮೀನು ಕೆಲಸ ಮಾಡ್ತೀರಿ (ಎಕರೆಯಲ್ಲಿ)?</span>
-                </label>
-                <input type="text" id="landSize" name="landSize" placeholder="ಉದಾ., 5 ಎಕರೆ">
+                <label for="landSize">How much land do you cultivate (in acres)?</label>
+                <input type="text" id="landSize" name="landSize" placeholder="e.g., 5 acres">
             </div>
 
             <div class="form-group">
-                <label for="cropTypes">
-                    <span class="en active">What are the main crops you grow?</span>
-                    <span class="kn">ಯಾವ ಬೆಳೆಗಳನ್ನು ಬೆಳೆಯುತ್ತೀರಿ?</span>
-                </label>
-                <input type="text" id="cropTypes" name="cropTypes" placeholder="ಉದಾ., ಭತ್ತ, ಗೋಧಿ, ತರಕಾರಿ">
+                <label for="cropTypes">What are the main crops you grow?</label>
+                <input type="text" id="cropTypes" name="cropTypes" placeholder="e.g., Rice, Wheat, Vegetables">
             </div>
 
             <!-- Promotional Message -->
             <div class="promotional">
-                <h3 class="en active">KISSAN 4.0: Your Complete Farming Solution</h3>
-                <h3 class="kn">ಕಿಸ್ಸಾನ್ 4.0: ನಿಮ್ಮ ಕೃಷಿಗೆ ಒಟ್ಟಾರೆ ದಾರಿ</h3>
-                <p class="en active">We bring you tools to grow smarter and earn more:</p>
-                <p class="kn">ಒಳ್ಳೆ ಬೆಳೆಗೆ, ಹೆಚ್ಚು ಲಾಭಕ್ಕೆ ಸಾಧನ ಕೊಡ್ತೀವಿ:</p>
+                <h3>KISSAN 4.0: Your Complete Farming Solution</h3>
+                <p>We bring you tools to grow smarter and earn more:</p>
                 <ul style="text-align: left; display: inline-block;">
-                    <li class="en active"><strong>Soil Management:</strong> Free testing & tips</li>
-                    <li class="kn"><strong>ಮಣ್ಣು ಚೆಕ್:</strong> ಉಚಿತ ಟೆಸ್ಟ್, ಸಲಹೆ</li>
-                    <li class="en active"><strong>Disease Control:</strong> Spot issues early</li>
-                    <li class="kn"><strong>ರೋಗ ತಡೆ:</strong> ಸಮಸ್ಯೆ ಆರಂಭದಲ್ಲೇ ಗೊತ್ತಾಗುತ್ತೆ</li>
-                    <li class="en active"><strong>Market Prices:</strong> Real-time mandi updates</li>
-                    <li class="kn"><strong>ಮಾರುಕಟ್ಟೆ ರೇಟ್:</strong> ಈಗಿನ ಮಂಡಿ ಬೆಲೆ ತಿಳಿಯಿರಿ</li>
-                    <li class="en active"><strong>Government Help:</strong> Easy scheme access</li>
-                    <li class="kn"><strong>ಸರ್ಕಾರಿ ಸಹಾಯ:</strong> ಸುಲಭವಾಗಿ ಯೋಜನೆ ಪಡೆಯಿರಿ</li>
-                    <li class="en active"><strong>AI Support:</strong> 24/7 in your language</li>
-                    <li class="kn"><strong>AI ಹೆಲ್ಪ್:</strong> 24/7 ನಿಮ್ಮ ಭಾಷೆಯಲ್ಲಿ</li>
+                    <li><strong>Soil Management:</strong> Free testing & tips</li>
+                    <li><strong>Disease Control:</strong> Spot issues early</li>
+                    <li><strong>Market Prices:</strong> Real-time mandi updates</li>
+                    <li><strong>Government Help:</strong> Easy scheme access</li>
+                    <li><strong>AI Support:</strong> 24/7 in your language</li>
                 </ul>
-                <p class="en active"><strong>Want these services FREE?</strong></p>
-                <p class="kn"><strong>ಈ ಸರ್ವೀಸ್ ಉಚಿತವಾಗಿ ಬೇಕಾ?</strong></p>
+                <p><strong>Want these services FREE?</strong></p>
                 <div class="radio-group" style="display: flex; justify-content: center; gap: 20px;">
                     <div class="radio-option">
                         <input type="radio" id="freeServiceYes" name="freeService" value="Yes">
-                        <label for="freeServiceYes">
-                            <span class="en active">Yes, sign me up!</span>
-                            <span class="kn">ಹೌದು, ನನ್ನ ಹೆಸರು ಸೇರಿಸಿ!</span>
-                        </label>
+                        <label for="freeServiceYes">Yes, sign me up!</label>
                     </div>
                     <div class="radio-option">
                         <input type="radio" id="freeServiceNo" name="freeService" value="No">
-                        <label for="freeServiceNo">
-                            <span class="en active">Not now</span>
-                            <span class="kn">ಈಗ ಬೇಡ</span>
-                        </label>
+                        <label for="freeServiceNo">Not now</label>
                     </div>
                 </div>
             </div>
 
             <!-- Challenges -->
             <div class="form-group">
-                <label>
-                    <span class="en active">What are your biggest farming challenges?</span>
-                    <span class="kn">ನಿಮ್ಮ ಕೃಷಿಯ ದೊಡ್ಡ ಪ್ರಾಬ್ಲಮ್ ಏನು?</span>
-                </label>
+                <label>What are your biggest farming challenges?</label>
                 <div class="checkbox-group">
                     <div class="checkbox-option">
                         <input type="checkbox" id="challengePests" name="challenges" value="Pest Management">
-                        <label for="challengePests">
-                            <span class="en active">Pests and diseases</span>
-                            <span class="kn">ಕೀಟ, ರೋಗ</span>
-                        </label>
+                        <label for="challengePests">Pests and diseases</label>
                     </div>
                     <div class="checkbox-option">
                         <input type="checkbox" id="challengeSoil" name="challenges" value="Soil Health">
-                        <label for="challengeSoil">
-                            <span class="en active">Soil health</span>
-                            <span class="kn">ಮಣ್ಣು ಚೆನ್ನಾಗಿಲ್ಲ</span>
-                        </label>
+                        <label for="challengeSoil">Soil health</label>
                     </div>
                     <div class="checkbox-option">
                         <input type="checkbox" id="challengeWater" name="challenges" value="Water Management">
-                        <label for="challengeWater">
-                            <span class="en active">Water issues</span>
-                            <span class="kn">ನೀರು ಕಷ್ಟ</span>
-                        </label>
+                        <label for="challengeWater">Water issues</label>
                     </div>
                     <div class="checkbox-option">
                         <input type="checkbox" id="challengeWeather" name="challenges" value="Weather Uncertainty">
-                        <label for="challengeWeather">
-                            <span class="en active">Unpredictable weather</span>
-                            <span class="kn">ಹವಾಮಾನ ಗೊತ್ತಾಗಲ್ಲ</span>
-                        </label>
+                        <label for="challengeWeather">Unpredictable weather</label>
                     </div>
                     <div class="checkbox-option">
                         <input type="checkbox" id="challengeMarket" name="challenges" value="Market Access">
-                        <label for="challengeMarket">
-                            <span class="en active">Market prices & access</span>
-                            <span class="kn">ಮಾರುಕಟ್ಟೆ ರೇಟ್, ದಾರಿ ಕಷ್ಟ</span>
-                        </label>
+                        <label for="challengeMarket">Market prices & access</label>
                     </div>
                     <div class="checkbox-option">
                         <input type="checkbox" id="challengeInfo" name="challenges" value="Information Access">
-                        <label for="challengeInfo">
-                            <span class="en active">Lack of info</span>
-                            <span class="kn">ಮಾಹಿತಿ ಸಿಗಲ್ಲ</span>
-                        </label>
+                        <label for="challengeInfo">Lack of info</label>
                     </div>
                 </div>
             </div>
 
             <!-- Soil Testing -->
             <div class="form-group">
-                <label>
-                    <span class="en active">Have you tested your soil for nutrients?</span>
-                    <span class="kn">ಮಣ್ಣನ್ನು ಟೆಸ್ಟ್ ಮಾಡಿದ್ದೀರಾ?</span>
-                </label>
+                <label>Have you tested your soil for nutrients?</label>
                 <div class="radio-group">
                     <div class="radio-option">
                         <input type="radio" id="soilTestYes" name="soilTest" value="Yes">
-                        <label for="soilTestYes">
-                            <span class="en active">Yes</span>
-                            <span class="kn">ಹೌದು</span>
-                        </label>
+                        <label for="soilTestYes">Yes</label>
                     </div>
                     <div class="radio-option">
                         <input type="radio" id="soilTestNo" name="soilTest" value="No">
-                        <label for="soilTestNo">
-                            <span class="en active">No</span>
-                            <span class="kn">ಇಲ್ಲ</span>
-                        </label>
+                        <label for="soilTestNo">No</label>
                     </div>
                     <div class="radio-option">
                         <input type="radio" id="soilTestNotSure" name="soilTest" value="Not Sure">
-                        <label for="soilTestNotSure">
-                            <span class="en active">Not sure</span>
-                            <span class="kn">ಗೊತ್ತಿಲ್ಲ</span>
-                        </label>
+                        <label for="soilTestNotSure">Not sure</label>
                     </div>
                 </div>
             </div>
 
             <!-- AI Product Promotion -->
             <div class="promotional" style="background: linear-gradient(120deg, #e3f2fd, #bbdefb);">
-                <h3 class="en active">KISSAN 4.0 Smart Farming System</h3>
-                <h3 class="kn">ಕಿಸ್ಸಾನ್ 4.0 ಸ್ಮಾರ್ಟ್ ಕೃಷಿ</h3>
-                <p class="en active">Revolutionize your farm with:</p>
-                <p class="kn">ನಿಮ್ಮ ಕೃಷಿಗೆ ಹೊಸ ದಾರಿ:</p>
+                <h3>KISSAN 4.0 Smart Farming System</h3>
+                <p>Revolutionize your farm with:</p>
                 <ul style="text-align: left; display: inline-block;">
-                    <li class="en active">Real-time soil & weather monitoring</li>
-                    <li class="kn">ಮಣ್ಣು, ಹವಾಮಾನ ಈಗಲೇ ಚೆಕ್</li>
-                    <li class="en active">Auto-irrigation from your phone</li>
-                    <li class="kn">ಫೋನ್‌ನಿಂದ ನೀರು ಹಾಕಿ</li>
-                    <li class="en active">Rain alerts & AI security cameras</li>
-                    <li class="kn">ಮಳೆ ಎಚ್ಚರಿಕೆ, AI ಕ್ಯಾಮೆರಾ</li>
-                    <li class="en active">Protect your land 24/7</li>
-                    <li class="kn">24/7 ಜಮೀನು ಸೇಫ್</li>
+                    <li>Real-time soil & weather monitoring</li>
+                    <li>Auto-irrigation from your phone</li>
+                    <li>Rain alerts & AI security cameras</li>
+                    <li>Protect your land 24/7</li>
                 </ul>
-                <p class="en active"><strong>Get it FREE or at a discount?</strong></p>
-                <p class="kn"><strong>ಇದು ಉಚಿತವಾಗಿ ಅಥವಾ ಕಡಿಮೆ ಬೆಲೆಗೆ ಬೇಕಾ?</strong></p>
+                <p><strong>Get it FREE or at a discount?</strong></p>
                 <div class="radio-group" style="display: flex; justify-content: center; gap: 20px;">
                     <div class="radio-option">
                         <input type="radio" id="aiSystemYes" name="aiSystem" value="Yes">
-                        <label for="aiSystemYes">
-                            <span class="en active">Yes, I want it!</span>
-                            <span class="kn">ಹೌದು, ಬೇಕು!</span>
-                        </label>
+                        <label for="aiSystemYes">Yes, I want it!</label>
                     </div>
                     <div class="radio-option">
                         <input type="radio" id="aiSystemMaybe" name="aiSystem" value="Maybe">
-                        <label for="aiSystemMaybe">
-                            <span class="en active">Maybe, tell me more</span>
-                            <span class="kn">ಆಗಬಹುದು, ಇನ್ನೂ ತಿಳಿಸಿ</span>
-                        </label>
+                        <label for="aiSystemMaybe">Maybe, tell me more</label>
                     </div>
                     <div class="radio-option">
                         <input type="radio" id="aiSystemNo" name="aiSystem" value="No">
-                        <label for="aiSystemNo">
-                            <span class="en active">Not now</span>
-                            <span class="kn">ಈಗ ಬೇಡ</span>
-                        </label>
+                        <label for="aiSystemNo">Not now</label>
                     </div>
                 </div>
                 <img src="Prod.jpeg" alt="KISSAN 4.0 System" style="max-width: 200px; margin-top: 20px; border-radius: 10px;">
@@ -634,306 +441,181 @@
 
             <!-- Market Intelligence -->
             <div class="form-group">
-                <label>
-                    <span class="en active">How do you get market price info?</span>
-                    <span class="kn">ಮಾರುಕಟ್ಟೆ ರೇಟ್ ಹೇಗೆ ತಿಳಿಯುತ್ತೀರಿ?</span>
-                </label>
+                <label>How do you get market price info?</label>
                 <div class="checkbox-group">
                     <div class="checkbox-option">
                         <input type="checkbox" id="priceMiddlemen" name="priceInfo" value="Local Middlemen">
-                        <label for="priceMiddlemen">
-                            <span class="en active">Local traders</span>
-                            <span class="kn">ಸ್ಥಳೀಯ ದಲ್ಲಾಳಿ</span>
-                        </label>
+                        <label for="priceMiddlemen">Local traders</label>
                     </div>
                     <div class="checkbox-option">
                         <input type="checkbox" id="priceMarket" name="priceInfo" value="Visit Market">
-                        <label for="priceMarket">
-                            <span class="en active">Market visits</span>
-                            <span class="kn">ಮಾರುಕಟ್ಟೆಗೆ ಹೋಗಿ</span>
-                        </label>
+                        <label for="priceMarket">Market visits</label>
                     </div>
                     <div class="checkbox-option">
                         <input type="checkbox" id="pricePhone" name="priceInfo" value="Phone">
-                        <label for="pricePhone">
-                            <span class="en active">Phone calls</span>
-                            <span class="kn">ಫೋನ್‌ನಲ್ಲಿ</span>
-                        </label>
+                        <label for="pricePhone">Phone calls</label>
                     </div>
                     <div class="checkbox-option">
                         <input type="checkbox" id="priceApp" name="priceInfo" value="Mobile App">
-                        <label for="priceApp">
-                            <span class="en active">Apps/SMS</span>
-                            <span class="kn">ಆಪ್/ಮೆಸೇಜ್</span>
-                        </label>
+                        <label for="priceApp">Apps/SMS</label>
                     </div>
                     <div class="checkbox-option">
                         <input type="checkbox" id="priceTV" name="priceInfo" value="TV/Radio">
-                        <label for="priceTV">
-                            <span class="en active">TV/Radio</span>
-                            <span class="kn">ಟಿವಿ/ರೇಡಿಯೋ</span>
-                        </label>
+                        <label for="priceTV">TV/Radio</label>
                     </div>
                 </div>
             </div>
 
             <!-- Government Schemes -->
             <div class="form-group">
-                <label>
-                    <span class="en active">Are you using government schemes?</span>
-                    <span class="kn">ಸರ್ಕಾರಿ ಯೋಜನೆ ಯೂಸ್ ಮಾಡ್ತೀರಾ?</span>
-                </label>
+                <label>Are you using government schemes?</label>
                 <div class="radio-group">
                     <div class="radio-option">
                         <input type="radio" id="govSchemeYes" name="govScheme" value="Yes">
-                        <label for="govSchemeYes">
-                            <span class="en active">Yes</span>
-                            <span class="kn">ಹೌದು</span>
-                        </label>
+                        <label for="govSchemeYes">Yes</label>
                     </div>
                     <div class="radio-option">
                         <input type="radio" id="govSchemeNo" name="govScheme" value="No">
-                        <label for="govSchemeNo">
-                            <span class="en active">No</span>
-                            <span class="kn">ಇಲ್ಲ</span>
-                        </label>
+                        <label for="govSchemeNo">No</label>
                     </div>
                     <div class="radio-option">
                         <input type="radio" id="govSchemeNotSure" name="govScheme" value="Not Sure">
-                        <label for="govSchemeNotSure">
-                            <span class="en active">Not sure</span>
-                            <span class="kn">ಗೊತ್ತಿಲ್ಲ</span>
-                        </label>
+                        <label for="govSchemeNotSure">Not sure</label>
                     </div>
                 </div>
             </div>
 
             <!-- Direct Sales -->
             <div class="form-group">
-                <label>
-                    <span class="en active">Interested in selling directly?</span>
-                    <span class="kn">ನೇರವಾಗಿ ಮಾರಾಟ ಮಾಡೋಕೆ ಒಪ್ಪಿಗೆ ಇದೆಯಾ?</span>
-                </label>
+                <label>Interested in selling directly?</label>
                 <div class="radio-group">
                     <div class="radio-option">
                         <input type="radio" id="directSaleYes" name="directSale" value="Yes">
-                        <label for="directSaleYes">
-                            <span class="en active">Yes, very interested</span>
-                            <span class="kn">ಹೌದು, ಒಪ್ಪಿಗೆ ಇದೆ</span>
-                        </label>
+                        <label for="directSaleYes">Yes, very interested</label>
                     </div>
                     <div class="radio-option">
                         <input type="radio" id="directSaleMaybe" name="directSale" value="Maybe">
-                        <label for="directSaleMaybe">
-                            <span class="en active">Maybe, need more info</span>
-                            <span class="kn">ಆಗಬಹುದು, ಇನ್ನೂ ತಿಳಿಸಿ</span>
-                        </label>
+                        <label for="directSaleMaybe">Maybe, need more info</label>
                     </div>
                     <div class="radio-option">
                         <input type="radio" id="directSaleNo" name="directSale" value="No">
-                        <label for="directSaleNo">
-                            <span class="en active">No, I’m fine now</span>
-                            <span class="kn">ಇಲ್ಲ, ಈಗ ಸಾಕು</span>
-                        </label>
+                        <label for="directSaleNo">No, I’m fine now</label>
                     </div>
                 </div>
             </div>
 
             <!-- Communication Preference -->
             <div class="form-group">
-                <label class="required">
-                    <span class="en active">How do you want farming info?</span>
-                    <span class="kn">ಕೃಷಿ ಮಾಹಿತಿ ಹೇಗೆ ಬೇಕು?</span>
-                </label>
+                <label class="required">How do you want farming info?</label>
                 <div class="radio-group">
                     <div class="radio-option">
                         <input type="radio" id="comSMS" name="comPreference" value="SMS" required>
-                        <label for="comSMS">
-                            <span class="en active">SMS</span>
-                            <span class="kn">ಮೆಸೇಜ್</span>
-                        </label>
+                        <label for="comSMS">SMS</label>
                     </div>
                     <div class="radio-option">
                         <input type="radio" id="comVoice" name="comPreference" value="Voice Call">
-                        <label for="comVoice">
-                            <span class="en active">Voice call</span>
-                            <span class="kn">ಫೋನ್ ಕಾಲ್</span>
-                        </label>
+                        <label for="comVoice">Voice call</label>
                     </div>
                     <div class="radio-option">
                         <input type="radio" id="comWhatsApp" name="comPreference" value="WhatsApp">
-                        <label for="comWhatsApp">
-                            <span class="en active">WhatsApp</span>
-                            <span class="kn">ವಾಟ್ಸಪ್</span>
-                        </label>
+                        <label for="comWhatsApp">WhatsApp</label>
                     </div>
                     <div class="radio-option">
                         <input type="radio" id="comApp" name="comPreference" value="Mobile App">
-                        <label for="comApp">
-                            <span class="en active">Mobile app</span>
-                            <span class="kn">ಆಪ್</span>
-                        </label>
+                        <label for="comApp">Mobile app</label>
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="language" class="required">
-                    <span class="en active">Preferred language</span>
-                    <span class="kn">ಯಾವ ಭಾಷೆ ಇಷ್ಟ?</span>
-                </label>
+                <label for="language" class="required">Preferred language</label>
                 <select id="language" name="language" required>
-                    <option value="" class="en active">Select a language</option>
-                    <option value="" class="kn">ಭಾಷೆ ಆರಿಸಿ</option>
-                    <option value="Hindi" class="en active">Hindi</option>
-                    <option value="Hindi" class="kn">ಹಿಂದಿ</option>
-                    <option value="English" class="en active">English</option>
-                    <option value="English" class="kn">ಇಂಗ್ಲಿಷ್</option>
-                    <option value="Bengali" class="en active">Bengali</option>
-                    <option value="Bengali" class="kn">ಬೆಂಗಾಲಿ</option>
-                    <option value="Marathi" class="en active">Marathi</option>
-                    <option value="Marathi" class="kn">ಮರಾಠಿ</option>
-                    <option value="Telugu" class="en active">Telugu</option>
-                    <option value="Telugu" class="kn">ತೆಲುಗು</option>
-                    <option value="Tamil" class="en active">Tamil</option>
-                    <option value="Tamil" class="kn">ತಮಿಳು</option>
-                    <option value="Gujarati" class="en active">Gujarati</option>
-                    <option value="Gujarati" class="kn">ಗುಜರಾತಿ</option>
-                    <option value="Kannada" class="en active">Kannada</option>
-                    <option value="Kannada" class="kn">ಕನ್ನಡ</option>
-                    <option value="Malayalam" class="en active">Malayalam</option>
-                    <option value="Malayalam" class="kn">ಮಲಯಾಳಂ</option>
-                    <option value="Punjabi" class="en active">Punjabi</option>
-                    <option value="Punjabi" class="kn">ಪಂಜಾಬಿ</option>
-                    <option value="Other" class="en active">Other</option>
-                    <option value="Other" class="kn">ಬೇರೆ</option>
+                    <option value="">Select a language</option>
+                    <option value="Hindi">Hindi</option>
+                    <option value="English">English</option>
+                    <option value="Bengali">Bengali</option>
+                    <option value="Marathi">Marathi</option>
+                    <option value="Telugu">Telugu</option>
+                    <option value="Tamil">Tamil</option>
+                    <option value="Gujarati">Gujarati</option>
+                    <option value="Kannada">Kannada</option>
+                    <option value="Malayalam">Malayalam</option>
+                    <option value="Punjabi">Punjabi</option>
+                    <option value="Other">Other</option>
                 </select>
             </div>
 
             <!-- WhatsApp Group Option -->
             <div id="whatsappGroupOption" class="form-group" style="display: none; background: #e1f5fe;">
-                <label style="color: #01579b;">
-                    <span class="en active">Join our WhatsApp Community!</span>
-                    <span class="kn">ನಮ್ಮ ವಾಟ್ಸಪ್ ಗುಂಪಿಗೆ ಸೇರಿ!</span>
-                </label>
-                <p class="en active">Get instant updates & connect with farmers in your state.</p>
-                <p class="kn">ಈಗಲೇ ಅಪ್‌ಡೇಟ್ ಪಡೆಯಿರಿ, ರೈತರ ಜೊತೆ ಮಾತಾಡಿ.</p>
+                <label style="color: #01579b;">Join our WhatsApp Community!</label>
+                <p>Get instant updates & connect with farmers in your state.</p>
                 <div class="radio-group">
                     <div class="radio-option">
                         <input type="radio" id="joinWhatsAppYes" name="joinWhatsApp" value="Yes" checked>
-                        <label for="joinWhatsAppYes">
-                            <span class="en active">Yes, add me!</span>
-                            <span class="kn">ಹೌದು, ಸೇರಿಸಿ!</span>
-                        </label>
+                        <label for="joinWhatsAppYes">Yes, add me!</label>
                     </div>
                     <div class="radio-option">
                         <input type="radio" id="joinWhatsAppNo" name="joinWhatsApp" value="No">
-                        <label for="joinWhatsAppNo">
-                            <span class="en active">No, maybe later</span>
-                            <span class="kn">ಇಲ್ಲ, ನಂತರ</span>
-                        </label>
+                        <label for="joinWhatsAppNo">No, maybe later</label>
                     </div>
                 </div>
             </div>
 
             <!-- Reward Box -->
             <div class="reward-box">
-                <h3 class="en active">Unlock Your Reward!</h3>
-                <h3 class="kn">ನಿಮ್ಮ ಬಹುಮಾನ ಪಡೆಯಿರಿ!</h3>
-                <p class="en active">Submit now for <strong>₹10 cashback</strong> + a chance to win FREE KISSAN 4.0 tools!</p>
-                <p class="kn">ಈಗ ಸಬ್ಮಿಟ್ ಮಾಡಿ, <strong>₹10 ಕ್ಯಾಶ್‌ಬ್ಯಾಕ್</strong> + ಕಿಸ್ಸಾನ್ 4.0 ಸಾಧನ ಗೆಲ್ಲೋ ಚಾನ್ಸ್!</p>
+                <h3>Unlock Your Reward!</h3>
+                <p>Submit now for <strong>₹10 cashback</strong> + a chance to win FREE KISSAN 4.0 tools!</p>
             </div>
 
             <!-- Share Section -->
             <div class="share-section">
-                <h3 class="en active">Become a Mega Powered Kissan!</h3>
-                <h3 class="kn">ಮೆಗಾ ಕಿಸ್ಸಾನ್ ಆಗಿ!</h3>
-                <p class="en active"><strong>Share & Win:</strong> Invite 5 friends and get KISSAN 4.0 FREE (worth ₹5000)!</p>
-                <p class="kn"><strong>5 ಗೆಳೆಯರಿಗೆ ಶೇರ್ ಮಾಡಿ,</strong> ಕಿಸ್ಸಾನ್ 4.0 ಉಚಿತ (₹5000 ಬೆಲೆ)!</p>
+                <h3>Become a Mega Powered Kissan!</h3>
+                <p><strong>Share & Win:</strong> Invite 5 friends and get KISSAN 4.0 FREE (worth ₹5000)!</p>
                 <div class="share-buttons">
-                    <button type="button" class="whatsapp" onclick="shareForm('whatsapp')">
-                        <span class="en active">WhatsApp</span>
-                        <span class="kn">ವಾಟ್ಸಪ್</span>
-                    </button>
-                    <button type="button" class="facebook" onclick="shareForm('facebook')">
-                        <span class="en active">Facebook</span>
-                        <span class="kn">ಫೇಸ್‌ಬುಕ್</span>
-                    </button>
-                    <button type="button" class="twitter" onclick="shareForm('twitter')">
-                        <span class="en active">Instagram</span>
-                        <span class="kn">ಇನ್‌ಸ್ಟಾಗ್ರಾಮ್</span>
-                    </button>
+                    <button type="button" class="whatsapp" onclick="shareForm('whatsapp')">WhatsApp</button>
+                    <button type="button" class="facebook" onclick="shareForm('facebook')">Facebook</button>
+                    <button type="button" class="twitter" onclick="shareForm('twitter')">Instagram</button>
                 </div>
             </div>
 
             <!-- Comments -->
             <div class="form-group">
-                <label for="comments">
-                    <span class="en active">Any questions or thoughts?</span>
-                    <span class="kn">ಏನಾದರೂ ಪ್ರಶ್ನೆ ಇದೆಯಾ?</span>
-                </label>
-                <textarea id="comments" name="comments" rows="4" placeholder="ಇನ್ನೂ ಹೇಳಿ"></textarea>
+                <label for="comments">Any questions or thoughts?</label>
+                <textarea id="comments" name="comments" rows="4" placeholder="Tell us more..."></textarea>
             </div>
 
-            <button type="submit">
-                <span class="en active">Claim My Farming Upgrade Now!</span>
-                <span class="kn">ನನ್ನ ಕೃಷಿ ಉನ್ನತೀಕರಣವನ್ನು ಈಗ ಪಡೆಯಿರಿ!</span>
-            </button>
+            <button type="submit">Claim My Farming Upgrade Now!</button>
         </form>
 
         <footer>
-            <p class="en active">Trusted by farmers across India | © 2025 KISSAN 4.0</p>
-            <p class="kn">ಭಾರತದ ರೈತರಿಗೆ ಟ್ರಸ್ಟ್ | © 2025 ಕಿಸ್ಸಾನ್ 4.0</p>
+            <p>Trusted by farmers across India | 100% Confidential | © 2025 KISSAN 4.0</p>
         </footer>
     </div>
 
     <!-- Thank You Page -->
     <div id="thankYouPage" class="container thank-you-page">
         <header>
-            <h1 class="en active">KISSAN 4.0: The Future of Farming</h1>
-            <h1 class="kn">ಕಿಸ್ಸಾನ್ 4.0: ಕೃಷಿಯ ಹೊಸ ದಾರಿ</h1>
+            <h1>KISSAN 4.0: The Future of Farming</h1>
         </header>
-        <h2 class="en active">Thank You, Farmer!</h2>
-        <h2 class="kn">ಥ್ಯಾಂಕ್ಸ್, ರೈತರೇ!</h2>
-        <p class="en active">Your info is in! Expect personalized farming tips soon.</p>
-        <p class="kn">ನಿಮ್ಮ ಮಾಹಿತಿ ಬಂತು! ಶೀಘ್ರದಲ್ಲಿ ಕೃಷಿ ಸಲಹೆ ಕೊಡ್ತೀವಿ.</p>
+        <h2>Thank You, Farmer!</h2>
+        <p>Your info is in! Expect personalized farming tips soon.</p>
         <div class="reward-box">
-            <h3 class="en active">Congratulations!</h3>
-            <h3 class="kn">ಒಳ್ಳೆ ಸುದ್ದಿ!</h3>
-            <p class="en active">You’ve earned <strong>₹10 cashback</strong> – credited soon!</p>
-            <p class="kn">ನೀವು <strong>₹10 ಕ್ಯಾಶ್‌ಬ್ಯಾಕ್</strong> ಗಳಿಸಿದ್ದೀರಿ - ಶೀಘ್ರದಲ್ಲಿ ಬರತ್ತೆ!</p>
+            <h3>Congratulations!</h3>
+            <p>You’ve earned <strong>₹10 cashback</strong> – credited soon!</p>
         </div>
         <div id="whatsappJoinSection" style="display: none; margin-top: 30px;">
-            <h3 style="color: #075e54;" class="en active">Join Your WhatsApp Community</h3>
-            <h3 style="color: #075e54;" class="kn">ನಿಮ್ಮ ವಾಟ್ಸಪ್ ಗುಂಪಿಗೆ ಸೇರಿ</h3>
-            <p class="en active">Connect with farmers & experts in your state!</p>
-            <p class="kn">ರೈತರು, ಎಕ್ಸ್‌ಪರ್ಟ್‌ಗಳ ಜೊತೆ ಮಾತಾಡಿ!</p>
-            <button style="background: #128C7E;" onclick="joinWhatsAppGroup()">
-                <span class="en active">Join Now</span>
-                <span class="kn">ಈಗ ಸೇರಿ</span>
-            </button>
+            <h3 style="color: #075e54;">Join Your WhatsApp Community</h3>
+            <p>Connect with farmers & experts in your state!</p>
+            <button style="background: #128C7E;" onclick="joinWhatsAppGroup()">Join Now</button>
         </div>
-        <p style="margin-top: 20px;" class="en active">Share with #KISSAN40</p>
-        <p style="margin-top: 20px;" class="kn">#KISSAN40 ಜೊತೆ ಶೇರ್ ಮಾಡಿ</p>
-        <button onclick="returnToForm()" style="background: #616161;">
-            <span class="en active">Back to Home</span>
-            <span class="kn">ಮತ್ತೆ ಮುಖಪುಟಕ್ಕೆ</span>
-        </button>
+        <p style="margin-top: 20px;">Share with #KISSAN40</p>
+        <button onclick="returnToForm()" style="background: #616161;">Back to Home</button>
         <footer>
-            <p class="en active">© 2025 KISSAN 4.0 - Transforming Indian Agriculture</p>
-            <p class="kn">© 2025 ಕಿಸ್ಸಾನ್ 4.0 - ಭಾರತದ ಕೃಷಿ ಬದಲಾವಣೆ</p>
+            <p>© 2025 KISSAN 4.0 - Transforming Indian Agriculture</p>
         </footer>
     </div>
 
     <script>
-        // Language Toggle
-        function toggleLanguage(lang) {
-            document.querySelectorAll('.en, .kn').forEach(el => {
-                el.classList.remove('active');
-                if (el.classList.contains(lang)) el.classList.add('active');
-            });
-        }
-
         // Progress Bar
         const form = document.getElementById('farmerSurvey');
         const progressBar = document.getElementById('progressBar');
@@ -990,7 +672,7 @@
             const url = window.location.href;
             if (platform === 'whatsapp') window.open(`https://wa.me/?text=Join%20KISSAN%204.0:%20${url}`);
             if (platform === 'facebook') window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`);
-            if (platform === 'twitter') window.open(`https://www.instagram.com/`);
+            if (platform === 'twitter') window.open(`https://twitter.com/intent/tweet?url=${url}&text=Upgrade%20your%20farming%20with%20KISSAN%204.0!`);
         }
 
         // WhatsApp Eligibility
@@ -1002,15 +684,12 @@
 
         // Thank You Page Functions
         function joinWhatsAppGroup() {
-            alert('You’ll be added to the WhatsApp group soon! / ನೀವು ಶೀಘ್ರದಲ್ಲಿ ವಾಟ್ಸಪ್ ಗುಂಪಿಗೆ ಸೇರಿಸಲಾಗುವಿರಿ!');
+            alert('You’ll be added to the WhatsApp group soon!');
         }
         function returnToForm() {
             document.getElementById('thankYouPage').style.display = 'none';
             document.getElementById('mainForm').style.display = 'block';
         }
-
-        // Set default language to English
-        toggleLanguage('en');
     </script>
 </body>
 </html>
