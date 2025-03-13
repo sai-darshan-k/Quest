@@ -5,22 +5,21 @@ const path = require('path');
 const cors = require('cors');
 
 const app = express();
-const port = 3000;
 
 // Middleware
 app.use(express.json());
-app.use(cors()); // Allow cross-origin requests from front-end
-app.use(express.static(__dirname)); // Serve static files from the current directory
+app.use(cors()); // Allow cross-origin requests
+app.use(express.static(path.join(__dirname, 'public'))); // Serve static files from 'public'
 
-// Excel file path
-const excelFilePath = path.join(__dirname, 'kissan_data.xlsx');
+// Excel file path (use /tmp for Vercel’s writable directory)
+const excelFilePath = path.join('/tmp', 'kissan_data.xlsx');
 
 // Function to update or create Excel file
 function updateExcel(data) {
     let workbook;
     let worksheet;
 
-    // Check if file exists
+    // Check if file exists in /tmp
     if (fs.existsSync(excelFilePath)) {
         workbook = XLSX.readFile(excelFilePath);
         worksheet = workbook.Sheets[workbook.SheetNames[0]];
@@ -64,7 +63,8 @@ app.post('/submit', (req, res) => {
     }
 });
 
-// Start server
+// Start server with Vercel-provided port
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+    console.log(`Server running on port ${port}`);
 });
