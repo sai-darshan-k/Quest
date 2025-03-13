@@ -144,18 +144,72 @@
             margin: 0 0 10px;
         }
         .promotional {
-            padding: 15px;
-            flex-direction: column; /* Stack content and image vertically on mobile */
-            align-items: center; /* Center items */
-        }
-        .promotional-content {
-            text-align: center; /* Center text on mobile */
-            width: 100%; /* Full width */
-        }
-        .promotional-image {
-            margin-top: 15px; /* Space above image */
-            max-width: 150px; /* Smaller image on mobile */
-        }
+    background: linear-gradient(120deg, #e8f5e9, #c8e6c9);
+    padding: 25px;
+    border-radius: 10px;
+    margin: 30px 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.promotional-content {
+    flex: 1;
+    text-align: left;
+}
+
+.promotional-image {
+    flex: 0 0 auto;
+    max-width: 200px;
+}
+
+.promotional h3 {
+    color: #2e7d32;
+    font-family: 'Merriweather', serif;
+    margin: 0 0 10px;
+}
+
+.promotional p {
+    margin: 10px 0;
+}
+
+.promotional ul {
+    text-align: left;
+    display: inline-block;
+    padding-left: 20px;
+    margin: 10px 0;
+}
+
+/* Mobile Responsiveness (below 768px) */
+@media (max-width: 768px) {
+    .promotional {
+        padding: 15px;
+        flex-direction: row; /* Keep image to the right */
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: nowrap;
+    }
+    .promotional-content {
+        text-align: left;
+        flex: 1;
+    }
+    .promotional-image {
+        max-width: 100px; /* Smaller image on mobile */
+    }
+    .promotional h3 {
+        font-size: 1.4em;
+    }
+    .promotional p {
+        font-size: 0.9em;
+    }
+    .promotional ul {
+        padding-left: 15px;
+        font-size: 0.9em;
+    }
+}
         .promotional {
             background: linear-gradient(120deg, #e8f5e9, #c8e6c9);
             padding: 25px;
