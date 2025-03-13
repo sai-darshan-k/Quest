@@ -106,7 +106,7 @@
         }
         .radio-option input, .checkbox-option input {
             margin-right: 10px;
-            margin-bottom: 12px
+            margin-bottom: 12px;
         }
         button {
             background: linear-gradient(135deg, #2e7d32, #4caf50);
@@ -144,74 +144,40 @@
             margin: 0 0 10px;
         }
         .promotional {
-    background: linear-gradient(120deg, #e8f5e9, #c8e6c9);
-    padding: 25px;
-    border-radius: 10px;
-    margin: 30px 0;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-}
-
-.promotional-content {
-    flex: 1;
-    text-align: left;
-}
-
-.promotional-image {
-    flex: 0 0 auto;
-    max-width: 200px;
-}
-
-.promotional h3 {
-    color: #2e7d32;
-    font-family: 'Merriweather', serif;
-    margin: 0 0 10px;
-}
-
-.promotional p {
-    margin: 10px 0;
-}
-
-.promotional ul {
-    text-align: left;
-    display: inline-block;
-    padding-left: 20px;
-    margin: 10px 0;
-}
-
-/* Mobile Responsiveness (below 768px) */
-@media (max-width: 768px) {
-    .promotional {
-        padding: 15px;
-        flex-direction: row; /* Keep image to the right */
-        justify-content: space-between;
-        align-items: center;
-        gap: 15px;
-        flex-wrap: nowrap;
-    }
-    .promotional-content {
-        text-align: left;
-        flex: 1;
-    }
-    .promotional-image {
-        max-width: 100px; /* Smaller image on mobile */
-    }
-
-}
-        .promotional {
-            background: linear-gradient(120deg, #e8f5e9, #c8e6c9);
+            background: linear-gradient(120deg, #e8f5e9, #c8e6c9); /* Default for first section */
             padding: 25px;
             border-radius: 10px;
-            text-align: center;
             margin: 30px 0;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+        .promotional-content {
+            flex: 1;
+            text-align: left;
+        }
+        .promotional-image {
+            flex: 0 0 auto;
+            max-width: 200px;
         }
         .promotional h3 {
             color: #2e7d32;
             font-family: 'Merriweather', serif;
+            margin: 0 0 10px;
+        }
+        .promotional p {
+            margin: 10px 0;
+        }
+        .promotional ul {
+            text-align: left;
+            display: inline-block;
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        .free-question {
+            margin: 10px 0;
         }
         .share-section {
             background: linear-gradient(120deg, #ffebee, #ffcdd2);
@@ -305,16 +271,16 @@
             .radio-option, .checkbox-option {
                 margin: 5px 0;
                 display: flex;
-                align-items: center; /* Keep items aligned horizontally */
-                flex-wrap: nowrap; /* Prevent wrapping */
+                align-items: center;
+                flex-wrap: nowrap;
             }
             .radio-option input, .checkbox-option input {
-                margin-right: 8px; /* Keep spacing between input and label */
-                margin-bottom: 12px; /* Reset bottom margin */
+                margin-right: 8px;
+                margin-bottom: 12px;
             }
             .radio-option label, .checkbox-option label {
-                font-size: 0.9em; /* Smaller text for mobile */
-                line-height: 1.2; /* Ensure text aligns nicely with input */
+                font-size: 0.9em;
+                line-height: 1.2;
             }
             button {
                 padding: 12px 30px;
@@ -328,12 +294,38 @@
             }
             .promotional {
                 padding: 15px;
+                flex-direction: column; /* Stack vertically on mobile */
+                align-items: center; /* Center items */
+                gap: 15px;
+            }
+            .promotional-content {
+                text-align: center; /* Center text for better mobile layout */
+                width: 100%; /* Full width */
+                display: flex;
+                flex-direction: column; /* Stack content vertically */
+            }
+            .promotional-image {
+                max-width: 150px; /* Smaller image on mobile */
+                order: 1; /* Place image after free-question but before radio-group */
+            }
+            .free-question {
+                order: 0; /* Keep below main content but above image */
+                font-size: 1em;
+            }
+            .radio-group {
+                order: 2; /* Place radio options below image */
+                flex-direction: column; /* Stack radio options vertically on mobile */
+                gap: 10px;
+                width: 100%; /* Full width for centering */
             }
             .promotional h3 {
                 font-size: 1.4em;
             }
+            .promotional p {
+                font-size: 0.9em;
+            }
             .promotional ul {
-                padding-left: 20px;
+                padding-left: 0; /* Remove left padding for centered list */
                 font-size: 0.9em;
             }
             .share-section {
@@ -357,78 +349,6 @@
                 font-size: 1.5em;
             }
         }
-/* ... (other styles remain unchanged) ... */
-
-.promotional {
-    background: linear-gradient(120deg, #e8f5e9, #c8e6c9);
-    padding: 25px;
-    border-radius: 10px;
-    margin: 30px 0;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-}
-
-.promotional-content {
-    flex: 1;
-    text-align: left;
-}
-
-.promotional-image {
-    flex: 0 0 auto;
-    max-width: 200px;
-}
-
-.promotional h3 {
-    color: #2e7d32;
-    font-family: 'Merriweather', serif;
-    margin: 0 0 10px;
-}
-
-.promotional p {
-    margin: 10px 0;
-}
-
-.promotional ul {
-    text-align: left;
-    display: inline-block;
-    padding-left: 20px;
-    margin: 10px 0;
-}
-
-/* ... (other styles remain unchanged) ... */
-
-@media (max-width: 768px) {
-    /* ... (other mobile styles remain unchanged) ... */
-    .promotional {
-        padding: 15px;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        gap: 15px;
-        flex-wrap: nowrap;
-    }
-    .promotional-content {
-        text-align: left;
-        flex: 1;
-    }
-    .promotional-image {
-        max-width: 100px;
-    }
-    .promotional h3 {
-        font-size: 1.4em;
-    }
-    .promotional p {
-        font-size: 0.9em;
-    }
-    .promotional ul {
-        padding-left: 15px;
-        font-size: 0.9em;
-    }
-    /* ... (other mobile styles remain unchanged) ... */
-}
     </style>
 </head>
 <body>
@@ -562,7 +482,6 @@
                 <input type="text" id="cropTypes" name="cropTypes" placeholder="e.g., Rice, Wheat, Vegetables">
             </div>
 
-            <!-- Promotional Message -->
             <div class="promotional">
                 <div class="promotional-content">
                     <h3>KISSAN 4.0: Your Complete Farming Solution</h3>
@@ -574,7 +493,7 @@
                         <li><strong>Government Help:</strong> Easy scheme access</li>
                         <li><strong>AI Support:</strong> 24/7 in your language</li>
                     </ul>
-                    <p><strong>Want these services FREE?</strong></p>
+                    <p class="free-question"><strong>Want these services FREE?</strong></p>
                     <div class="radio-group" style="display: flex; justify-content: center; gap: 20px;">
                         <div class="radio-option">
                             <input type="radio" id="freeServiceYes" name="freeService" value="Yes">
@@ -590,7 +509,6 @@
                     <img src="img4.jpg" alt="KISSAN 4.0 Farming Solution" style="max-width: 100%; height: auto; border-radius: 10px;">
                 </div>
             </div>
-
             <!-- Challenges -->
             <div class="form-group">
                 <label>What are your biggest farming challenges?</label>
@@ -653,7 +571,7 @@
             <li>Rain alerts & AI security cameras</li>
             <li>Protect your land 24/7</li>
         </ul>
-        <p><strong>Get it FREE or at a discount?</strong></p>
+        <p class="free-question"><strong>Get it FREE or at a discount?</strong></p>
         <div class="radio-group" style="display: flex; justify-content: center; gap: 20px;">
             <div class="radio-option">
                 <input type="radio" id="aiSystemYes" name="aiSystem" value="Yes">
