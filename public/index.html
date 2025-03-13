@@ -437,6 +437,11 @@
         font-size: 0.9em;
     }
 }
+#realTimeDisplay {
+    font-weight: bold;
+    color: #fff;
+    font-size: 1.1em;
+}
     </style>
 </head>
 <body>
@@ -450,6 +455,7 @@
         <header>
             <h1>KISSAN 4.0: Your Farming Revolution Starts Here with AI!</h1>
             <p class="header-subtitle">Join thousands of farmers unlocking smarter, richer harvests!</p>
+            <p>Current Time: <span id="realTimeDisplay"></span></p>
         </header>
 
         <div class="progress-bar" id="progressBar"></div>
@@ -810,7 +816,8 @@
                 <h3>Unlock Your Reward!</h3>
                 <p>Submit now for <strong>₹10 cashback</strong> + a chance to win FREE KISSAN 4.0 tools!</p>
             </div>
-
+<!-- Add hidden input for submission time -->
+<input type="hidden" id="submissionTime" name="submissionTime">
 <!-- Share Section -->
 <div class="share-section">
     <h3>Become a Mega Powered Kissan!</h3>
@@ -861,21 +868,21 @@
     </div>
     <script>
         // Check if the form has already been submitted on page load
-        window.onload = function () {
-            const hasSubmitted = localStorage.getItem('formSubmitted');
-            if (hasSubmitted === 'true') {
-                document.getElementById('mainForm').style.display = 'none';
-                document.getElementById('thankYouPage').style.display = 'block';
-                const savedName = localStorage.getItem('farmerName');
-                if (savedName) {
-                    document.getElementById('thankYouMessage').textContent = `Thank You, ${savedName}!`;
-                }
-                checkWhatsAppOnLoad();
-            } else {
-                document.getElementById('mainForm').style.display = 'block';
-                document.getElementById('thankYouPage').style.display = 'none';
-            }
-        };
+        // window.onload = function () {
+        //     const hasSubmitted = localStorage.getItem('formSubmitted');
+        //     if (hasSubmitted === 'true') {
+        //         document.getElementById('mainForm').style.display = 'none';
+        //         document.getElementById('thankYouPage').style.display = 'block';
+        //         const savedName = localStorage.getItem('farmerName');
+        //         if (savedName) {
+        //             document.getElementById('thankYouMessage').textContent = `Thank You, ${savedName}!`;
+        //         }
+        //         checkWhatsAppOnLoad();
+        //     } else {
+        //         document.getElementById('mainForm').style.display = 'block';
+        //         document.getElementById('thankYouPage').style.display = 'none';
+        //     }
+        // };
 
         // Progress Bar
         const form = document.getElementById('farmerSurvey');
@@ -887,59 +894,85 @@
             progressBar.style.width = `${(filled / inputs.length) * 100}%`;
         });
 
-        // Form Submission with Google Sheets Integration
-        async function submitForm(event) {
-            event.preventDefault();
+        function updateRealTime() {
+    const realTimeDisplay = document.getElementById('realTimeDisplay');
+    const now = new Date();
+    realTimeDisplay.textContent = now.toLocaleString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        timeZoneName: 'short'
+    });
+}
 
-            // Show loading spinner
-            const loadingOverlay = document.getElementById('loadingOverlay');
-            loadingOverlay.style.display = 'flex';
+// Update time every second
+setInterval(updateRealTime, 1000);
 
-            // Collect form data
-            const formData = new FormData(form);
-            const data = {};
-            formData.forEach((value, key) => {
-                if (key === 'challenges' || key === 'priceInfo') {
-                    if (!data[key]) data[key] = [];
-                    data[key].push(value);
-                } else {
-                    data[key] = value;
-                }
-            });
+// Initial call to display time immediately
+updateRealTime();
 
-            // Get the farmer's name
-            const farmerName = document.getElementById('name').value;
+// Form Submission with Google Sheets Integration
+async function submitForm(event) {
+    event.preventDefault();
 
-            // Immediately transition to Thank You page and update message
-            document.getElementById('mainForm').style.display = 'none';
-            document.getElementById('thankYouPage').style.display = 'block';
-            document.getElementById('thankYouMessage').textContent = `Thank You, ${farmerName}!`;
-            loadingOverlay.style.display = 'none'; // Stop spinner here
+    // Show loading spinner
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    loadingOverlay.style.display = 'flex';
 
-            // Check WhatsApp eligibility
-            const state = document.getElementById('state') ? document.getElementById('state').value : localStorage.getItem('submittedState');
-            if (['Karnataka', 'Andhra Pradesh', 'Tamil Nadu'].includes(state)) {
-                document.getElementById('whatsappJoinSection').style.display = 'block';
-            }
-
-            // Mark form as submitted and save name in localStorage
-            localStorage.setItem('formSubmitted', 'true');
-            localStorage.setItem('farmerName', farmerName);
-            localStorage.setItem('submittedState', state);
-
-            // Send data to Google Sheets in the background
-            try {
-                await fetch('https://script.google.com/macros/s/AKfycbyUnX92mixXZdDlEs2ur9Diynd2qIgs7cmesj9rhMrYfCohXC3vP6aUaWjhFy-Wf4TE/exec', {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data),
-                });
-            } catch (error) {
-                console.error('Error:', error);
-                alert('There was a network error submitting your data. We’ve recorded your submission locally, but please check your connection if you don’t receive confirmation.');
-            }
+    // Collect form data
+    const formData = new FormData(form);
+    const data = {};
+    formData.forEach((value, key) => {
+        if (key === 'challenges' || key === 'priceInfo') {
+            if (!data[key]) data[key] = [];
+            data[key].push(value);
+        } else {
+            data[key] = value;
         }
+    });
+
+    // Add real-time submission timestamp
+    const submissionTime = new Date().toISOString(); // ISO format for consistency
+    data.submissionTime = submissionTime;
+    document.getElementById('submissionTime').value = submissionTime; // Update hidden input
+
+    // Get the farmer's name
+    const farmerName = document.getElementById('name').value;
+
+    // Transition to Thank You page
+    document.getElementById('mainForm').style.display = 'none';
+    document.getElementById('thankYouPage').style.display = 'block';
+    document.getElementById('thankYouMessage').textContent = `Thank You, ${farmerName}!`;
+    loadingOverlay.style.display = 'none';
+
+    // Check WhatsApp eligibility
+    const state = document.getElementById('state') ? document.getElementById('state').value : localStorage.getItem('submittedState');
+    if (['Karnataka', 'Andhra Pradesh', 'Tamil Nadu'].includes(state)) {
+        document.getElementById('whatsappJoinSection').style.display = 'block';
+    }
+
+    // Mark form as submitted and save name/state in localStorage
+    localStorage.setItem('formSubmitted', 'true');
+    localStorage.setItem('farmerName', farmerName);
+    localStorage.setItem('submittedState', state);
+
+    // Send data to Google Sheets in the background
+    try {
+        await fetch('https://script.google.com/macros/s/AKfycbyUnX92mixXZdDlEs2ur9Diynd2qIgs7cmesj9rhMrYfCohXC3vP6aUaWjhFy-Wf4TE/exec', {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+        });
+    } catch (error) {
+        console.error('Error:', error);
+        alert('There was a network error submitting your data. We’ve recorded your submission locally, but please check your connection if you don’t receive confirmation.');
+    }
+}
 
         // Share Functionality
         function shareForm(platform) {
