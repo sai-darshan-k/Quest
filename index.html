@@ -106,6 +106,7 @@
         }
         .radio-option input, .checkbox-option input {
             margin-right: 10px;
+            margin-bottom: 12px
         }
         button {
             background: linear-gradient(135deg, #2e7d32, #4caf50);
@@ -141,6 +142,19 @@
         .reward-box h3 {
             color: #e65100;
             margin: 0 0 10px;
+        }
+        .promotional {
+            padding: 15px;
+            flex-direction: column; /* Stack content and image vertically on mobile */
+            align-items: center; /* Center items */
+        }
+        .promotional-content {
+            text-align: center; /* Center text on mobile */
+            width: 100%; /* Full width */
+        }
+        .promotional-image {
+            margin-top: 15px; /* Space above image */
+            max-width: 150px; /* Smaller image on mobile */
         }
         .promotional {
             background: linear-gradient(120deg, #e8f5e9, #c8e6c9);
@@ -204,6 +218,101 @@
             content: " *";
             color: red;
         }
+    
+        /* Mobile Responsiveness (below 768px) */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                padding: 15px;
+                margin: 0 10px;
+                max-width: 100%;
+            }
+            header {
+                padding: 20px;
+            }
+            header h1 {
+                font-size: 1.8em;
+            }
+            .header-subtitle {
+                font-size: 1em;
+            }
+            .progress-bar {
+                max-width: 90%;
+            }
+            .intro {
+                padding: 15px;
+            }
+            .intro p {
+                font-size: 0.9em;
+            }
+            .form-group {
+                padding: 15px;
+            }
+            label {
+                font-size: 1em;
+            }
+            input[type="text"], input[type="tel"], select, textarea {
+                padding: 10px;
+                font-size: 0.9em;
+            }
+            .radio-option, .checkbox-option {
+                margin: 5px 0;
+                display: flex;
+                align-items: center; /* Keep items aligned horizontally */
+                flex-wrap: nowrap; /* Prevent wrapping */
+            }
+            .radio-option input, .checkbox-option input {
+                margin-right: 8px; /* Keep spacing between input and label */
+                margin-bottom: 12px; /* Reset bottom margin */
+            }
+            .radio-option label, .checkbox-option label {
+                font-size: 0.9em; /* Smaller text for mobile */
+                line-height: 1.2; /* Ensure text aligns nicely with input */
+            }
+            button {
+                padding: 12px 30px;
+                font-size: 1em;
+            }
+            .reward-box {
+                padding: 15px;
+            }
+            .reward-box h3 {
+                font-size: 1.2em;
+            }
+            .promotional {
+                padding: 15px;
+            }
+            .promotional h3 {
+                font-size: 1.4em;
+            }
+            .promotional ul {
+                padding-left: 20px;
+                font-size: 0.9em;
+            }
+            .share-section {
+                padding: 15px;
+            }
+            .share-section h3 {
+                font-size: 1.4em;
+            }
+            .share-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .share-buttons button {
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+            .thank-you-page {
+                padding: 20px;
+            }
+            .thank-you-page h2 {
+                font-size: 1.5em;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -339,25 +448,30 @@
 
             <!-- Promotional Message -->
             <div class="promotional">
-                <h3>KISSAN 4.0: Your Complete Farming Solution</h3>
-                <p>We bring you tools to grow smarter and earn more:</p>
-                <ul style="text-align: left; display: inline-block;">
-                    <li><strong>Soil Management:</strong> Free testing & tips</li>
-                    <li><strong>Disease Control:</strong> Spot issues early</li>
-                    <li><strong>Market Prices:</strong> Real-time mandi updates</li>
-                    <li><strong>Government Help:</strong> Easy scheme access</li>
-                    <li><strong>AI Support:</strong> 24/7 in your language</li>
-                </ul>
-                <p><strong>Want these services FREE?</strong></p>
-                <div class="radio-group" style="display: flex; justify-content: center; gap: 20px;">
-                    <div class="radio-option">
-                        <input type="radio" id="freeServiceYes" name="freeService" value="Yes">
-                        <label for="freeServiceYes">Yes, sign me up!</label>
+                <div class="promotional-content">
+                    <h3>KISSAN 4.0: Your Complete Farming Solution</h3>
+                    <p>We bring you tools to grow smarter and earn more:</p>
+                    <ul style="text-align: left; display: inline-block;">
+                        <li><strong>Soil Management:</strong> Free testing & tips</li>
+                        <li><strong>Disease Control:</strong> Spot issues early</li>
+                        <li><strong>Market Prices:</strong> Real-time mandi updates</li>
+                        <li><strong>Government Help:</strong> Easy scheme access</li>
+                        <li><strong>AI Support:</strong> 24/7 in your language</li>
+                    </ul>
+                    <p><strong>Want these services FREE?</strong></p>
+                    <div class="radio-group" style="display: flex; justify-content: center; gap: 20px;">
+                        <div class="radio-option">
+                            <input type="radio" id="freeServiceYes" name="freeService" value="Yes">
+                            <label for="freeServiceYes">Yes, sign me up!</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="freeServiceNo" name="freeService" value="No">
+                            <label for="freeServiceNo">Not now</label>
+                        </div>
                     </div>
-                    <div class="radio-option">
-                        <input type="radio" id="freeServiceNo" name="freeService" value="No">
-                        <label for="freeServiceNo">Not now</label>
-                    </div>
+                </div>
+                <div class="promotional-image">
+                    <img src="img4.jpg" alt="KISSAN 4.0 Farming Solution" style="max-width: 100%; height: auto; border-radius: 10px;">
                 </div>
             </div>
 
