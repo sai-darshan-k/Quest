@@ -205,6 +205,23 @@
             cursor: pointer;
             transition: opacity 0.3s;
         }
+        .whatsapp-share-btn {
+            background: #25D366;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .whatsapp-share-btn:hover {
+            opacity: 0.9;
+        }
         .whatsapp { background: #25D366; }
         .facebook { background: #1877F2; }
         .twitter { background: #1DA1F2; }
@@ -744,7 +761,6 @@
         </footer>
     </div>
 
-    <!-- Thank You Page -->
     <div id="thankYouPage" class="container thank-you-page">
         <header>
             <h1>KISSAN 4.0: The Future of Farming</h1>
@@ -760,25 +776,27 @@
             <p>Connect with farmers & experts in your state!</p>
             <button style="background: #128C7E;" onclick="joinWhatsAppGroup()">Join Now</button>
         </div>
-        <p style="margin-top: 20px;">Share with #KISSAN40</p>
+        <p style="margin-top: 20px;">Share with friends to spread the word!</p>
+        <button class="whatsapp-share-btn" onclick="shareForm('whatsapp')">
+            <i class="fab fa-whatsapp"></i> Share on WhatsApp
+        </button>
         <footer>
             <p>© 2025 KISSAN 4.0 - Transforming Indian Agriculture</p>
         </footer>
     </div>
-
     <script>
         // Check if the form has already been submitted on page load
-        window.onload = function () {
-            const hasSubmitted = localStorage.getItem('formSubmitted');
-            if (hasSubmitted === 'true') {
-                document.getElementById('mainForm').style.display = 'none';
-                document.getElementById('thankYouPage').style.display = 'block';
-                checkWhatsAppOnLoad(); // Check WhatsApp eligibility based on stored state
-            } else {
-                document.getElementById('mainForm').style.display = 'block';
-                document.getElementById('thankYouPage').style.display = 'none';
-            }
-        };
+        // window.onload = function () {
+        //     const hasSubmitted = localStorage.getItem('formSubmitted');
+        //     if (hasSubmitted === 'true') {
+        //         document.getElementById('mainForm').style.display = 'none';
+        //         document.getElementById('thankYouPage').style.display = 'block';
+        //         checkWhatsAppOnLoad(); // Check WhatsApp eligibility based on stored state
+        //     } else {
+        //         document.getElementById('mainForm').style.display = 'block';
+        //         document.getElementById('thankYouPage').style.display = 'none';
+        //     }
+        // };
 
         // Progress Bar
         const form = document.getElementById('farmerSurvey');
@@ -834,12 +852,13 @@
             }
         }
 
-        // Share Functionality
+        // Share Functionality (reused for both main form and thank you page)
         function shareForm(platform) {
             const url = window.location.href;
-            if (platform === 'whatsapp') window.open(`https://wa.me/?text=Join%20KISSAN%204.0:%20${url}`);
-            if (platform === 'facebook') window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`);
-            if (platform === 'twitter') window.open(`https://twitter.com/intent/tweet?url=${url}&text=Upgrade%20your%20farming%20with%20KISSAN%204.0!`);
+            const shareText = "Join KISSAN 4.0 to upgrade your farming! Check it out: ";
+            if (platform === 'whatsapp') {
+                window.open(`https://wa.me/?text=${encodeURIComponent(shareText + url)}`);
+            }
         }
 
         // WhatsApp Eligibility
