@@ -117,7 +117,7 @@
             font-size: 1.2em;
             cursor: pointer;
             display: block;
-            margin: 5px auto;
+            margin: 13px auto;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s, background 0.3s;
         }
@@ -814,7 +814,7 @@
 <!-- Share Section -->
 <div class="share-section">
     <h3>Become a Mega Powered Kissan!</h3>
-    <p><strong>Share & Win:</strong> Invite 5 friends and get KISSAN 4.0 FREE (worth ₹5000)!</p>
+    <p><strong>Share & Win:</strong> Invite 5 friends and get KISSAN 4.0 for FREE (worth upto ₹5000)!</p>
     <div class="share-buttons">
         <button type="button" class="whatsapp" onclick="shareForm('whatsapp')">WhatsApp</button>
         <button type="button" class="facebook" onclick="shareForm('facebook')">Facebook</button>
@@ -838,7 +838,7 @@
 
     <div id="thankYouPage" class="container thank-you-page">
         <header>
-            <h1>KISSAN 4.0: The Future of Farming</h1>
+            <h1>KISSAN 4.0: AN AI FARMING REVOLUTION</h1>
         </header>
         <h2 id="thankYouMessage">Thank You, Farmer!</h2>
         <p>Your info is in! Expect personalized farming tips soon.</p>
@@ -861,21 +861,21 @@
     </div>
     <script>
         // Check if the form has already been submitted on page load
-        // window.onload = function () {
-        //     const hasSubmitted = localStorage.getItem('formSubmitted');
-        //     if (hasSubmitted === 'true') {
-        //         document.getElementById('mainForm').style.display = 'none';
-        //         document.getElementById('thankYouPage').style.display = 'block';
-        //         const savedName = localStorage.getItem('farmerName');
-        //         if (savedName) {
-        //             document.getElementById('thankYouMessage').textContent = `Thank You, ${savedName}!`;
-        //         }
-        //         checkWhatsAppOnLoad();
-        //     } else {
-        //         document.getElementById('mainForm').style.display = 'block';
-        //         document.getElementById('thankYouPage').style.display = 'none';
-        //     }
-        // };
+        window.onload = function () {
+            const hasSubmitted = localStorage.getItem('formSubmitted');
+            if (hasSubmitted === 'true') {
+                document.getElementById('mainForm').style.display = 'none';
+                document.getElementById('thankYouPage').style.display = 'block';
+                const savedName = localStorage.getItem('farmerName');
+                if (savedName) {
+                    document.getElementById('thankYouMessage').textContent = `Thank You, ${savedName}!`;
+                }
+                checkWhatsAppOnLoad();
+            } else {
+                document.getElementById('mainForm').style.display = 'block';
+                document.getElementById('thankYouPage').style.display = 'none';
+            }
+        };
 
         // Progress Bar
         const form = document.getElementById('farmerSurvey');
