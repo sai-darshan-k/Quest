@@ -761,13 +761,25 @@
             <button style="background: #128C7E;" onclick="joinWhatsAppGroup()">Join Now</button>
         </div>
         <p style="margin-top: 20px;">Share with #KISSAN40</p>
-        <button onclick="returnToForm()" style="background: #616161;">Back to Home</button>
         <footer>
             <p>© 2025 KISSAN 4.0 - Transforming Indian Agriculture</p>
         </footer>
     </div>
 
     <script>
+        // Check if the form has already been submitted on page load
+        window.onload = function () {
+            const hasSubmitted = localStorage.getItem('formSubmitted');
+            if (hasSubmitted === 'true') {
+                document.getElementById('mainForm').style.display = 'none';
+                document.getElementById('thankYouPage').style.display = 'block';
+                checkWhatsAppOnLoad(); // Check WhatsApp eligibility based on stored state
+            } else {
+                document.getElementById('mainForm').style.display = 'block';
+                document.getElementById('thankYouPage').style.display = 'none';
+            }
+        };
+
         // Progress Bar
         const form = document.getElementById('farmerSurvey');
         const progressBar = document.getElementById('progressBar');
@@ -777,11 +789,11 @@
             inputs.forEach(input => { if (input.value) filled++; });
             progressBar.style.width = `${(filled / inputs.length) * 100}%`;
         });
-    
+
         // Form Submission with Google Sheets Integration
         async function submitForm(event) {
             event.preventDefault();
-    
+
             // Collect form data
             const formData = new FormData(form);
             const data = {};
@@ -793,19 +805,25 @@
                     data[key] = value;
                 }
             });
-    
+
             try {
                 // Send data to Google Sheets with no-cors mode
                 await fetch('https://script.google.com/macros/s/AKfycbyUnX92mixXZdDlEs2ur9Diynd2qIgs7cmesj9rhMrYfCohXC3vP6aUaWjhFy-Wf4TE/exec', {
                     method: 'POST',
-                    mode: 'no-cors', // Add this to bypass CORS
+                    mode: 'no-cors',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data),
                 });
-    
-                // Since no-cors returns an opaque response, assume success and proceed
+
+                // Mark form as submitted in localStorage
+                localStorage.setItem('formSubmitted', 'true');
+                localStorage.setItem('submittedState', document.getElementById('state').value); // Store state for WhatsApp check
+
+                // Hide form and show thank you page
                 document.getElementById('mainForm').style.display = 'none';
                 document.getElementById('thankYouPage').style.display = 'block';
+
+                // Check WhatsApp eligibility
                 const state = document.getElementById('state').value;
                 if (['Karnataka', 'Andhra Pradesh', 'Tamil Nadu'].includes(state)) {
                     document.getElementById('whatsappJoinSection').style.display = 'block';
@@ -815,7 +833,7 @@
                 alert('Network error. Please check your connection and try again.');
             }
         }
-    
+
         // Share Functionality
         function shareForm(platform) {
             const url = window.location.href;
@@ -823,23 +841,25 @@
             if (platform === 'facebook') window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`);
             if (platform === 'twitter') window.open(`https://twitter.com/intent/tweet?url=${url}&text=Upgrade%20your%20farming%20with%20KISSAN%204.0!`);
         }
-    
+
         // WhatsApp Eligibility
         function checkWhatsAppEligibility() {
             const state = document.getElementById('state').value;
             const whatsappOption = document.getElementById('whatsappGroupOption');
             whatsappOption.style.display = ['Karnataka', 'Andhra Pradesh', 'Tamil Nadu'].includes(state) ? 'block' : 'none';
         }
-    
-        // Thank You Page Functions
+
+        // Check WhatsApp eligibility on page load for Thank You page
+        function checkWhatsAppOnLoad() {
+            const submittedState = localStorage.getItem('submittedState');
+            if (['Karnataka', 'Andhra Pradesh', 'Tamil Nadu'].includes(submittedState)) {
+                document.getElementById('whatsappJoinSection').style.display = 'block';
+            }
+        }
+
+        // Join WhatsApp Group
         function joinWhatsAppGroup() {
             alert('You’ll be added to the WhatsApp group soon!');
-        }
-        function returnToForm() {
-            document.getElementById('thankYouPage').style.display = 'none';
-            document.getElementById('mainForm').style.display = 'block';
-            form.reset();
-            progressBar.style.width = '0%';
         }
     </script>
 </body>
