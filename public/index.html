@@ -814,7 +814,7 @@
             <!-- Reward Box -->
             <div class="reward-box">
                 <h3>Unlock Your Reward!</h3>
-                <p>Submit now for <strong>Barosa ₹10</strong> + a chance to win FREE KISSAN 4.0 tools!</p>
+                <p>Submit now and get <strong>Barosa upto ₹10</strong> + a chance to win FREE KISSAN 4.0 tools!</p>
             </div>
 <!-- Add hidden input for submission time -->
 <input type="hidden" id="submissionTime" name="submissionTime">
@@ -852,16 +852,17 @@
         <div class="reward-box">
             <h3>Congratulations!</h3>
             <p>You’ve earned <strong>Barosa ₹10</strong> – credited soon!</p>
+            <button class="whatsapp-share-btn" onclick="shareForm('whatsapp')">
+                <i class="fab fa-whatsapp"></i> Share on WhatsApp
+            </button>
         </div>
         <div id="whatsappJoinSection" style="display: none; margin-top: 30px;">
             <h3 style="color: #075e54;">Join Your WhatsApp Community</h3>
             <p>Connect with farmers & experts in your state!</p>
             <button style="background: #128C7E;" onclick="window.location.href='https://chat.whatsapp.com/FFwb7dnuw2kKbQAkABxbkY'">Join Now</button>
         </div>
-        <p style="margin-top: 20px;">Share with friends to spread the word!</p>
-        <button class="whatsapp-share-btn" onclick="shareForm('whatsapp')">
-            <i class="fab fa-whatsapp"></i> Share on WhatsApp
-        </button>
+        <p style="margin-top: 20px; font-weight: bold; color: #e67e22;">Be a Farming Hero – Share the Revolution with Friends!</p>
+        <p style="margin-top: 10px;">Invite others to join KISSAN 4.0 and unlock smarter farming for all – together, we grow stronger!</p>
         <footer>
             <p>© 2025 KISSAN 4.0 - Transforming Indian Agriculture</p>
         </footer>
@@ -1145,132 +1146,133 @@
  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
  <style>
-     /* Positioning the Google Translate Widget at bottom-right */
-     #google_translate_element {
-         position: fixed;
-         bottom: 20px; /* Position from bottom */
-         right: 20px;  /* Position from right */
-         z-index: 1000;
-         background-color: rgba(255, 255, 255, 0.95);
-         padding: 4px; /* Reduced padding for smaller size */
-         border-radius: 6px;
-         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-     }
+    /* Positioning the Google Translate Widget at bottom-right */
+    #google_translate_element {
+        position: fixed;
+        bottom: 20px; /* Position from bottom */
+        right: 20px;  /* Position from right */
+        z-index: 1000;
+        background-color: rgba(255, 255, 255, 0.95);
+        padding: 4px; /* Reduced padding for smaller size */
+        border-radius: 6px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
 
-     /* Styling the Google Translate dropdown - smaller size */
-     .goog-te-gadget-simple {
-         border: 1px solid #388e3c !important;
-         border-radius: 4px !important;
-         padding: 4px 8px !important; /* Smaller padding */
-         font-family: 'Poppins', sans-serif !important;
-         font-size: 12px !important; /* Smaller font size */
-         background-color: #4caf50 !important;
-         color: #fff !important;
-         cursor: pointer !important;
-         transition: all 0.3s ease !important;
-         display: inline-flex !important;
-         align-items: center !important;
-     }
+    /* Styling the Google Translate dropdown - increased height and font size */
+    .goog-te-gadget-simple {
+        border: 1px solid #388e3c !important;
+        border-radius: 4px !important;
+        padding: 8px 12px !important; /* Increased padding for taller button */
+        font-family: 'Poppins', sans-serif !important;
+        font-size: 14px !important; /* Increased font size from 12px to 14px */
+        background-color: #4caf50 !important;
+        color: #fff !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        line-height: 1.5 !important; /* Ensures text aligns well vertically */
+    }
 
-     .goog-te-gadget-simple:hover {
-         background-color: #388e3c !important;
-         border-color: #2e7d32 !important;
-         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
-     }
+    .goog-te-gadget-simple:hover {
+        background-color: #388e3c !important;
+        border-color: #2e7d32 !important;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+    }
 
-     .goog-te-gadget-simple .goog-te-menu-value {
-         color: #fff !important;
-         text-decoration: none !important;
-         margin: 0 !important;
-     }
+    .goog-te-gadget-simple .goog-te-menu-value {
+        color: #fff !important;
+        text-decoration: none !important;
+        margin: 0 !important;
+    }
 
-     .goog-te-gadget-simple .goog-te-menu-value span {
-         color: #fff !important;
-     }
+    .goog-te-gadget-simple .goog-te-menu-value span {
+        color: #fff !important;
+    }
 
-     /* Hide Google branding and tooltips */
-     .goog-te-gadget img,
-     .goog-te-banner-frame,
-     .skiptranslate > iframe.skiptranslate,
-     .goog-tooltip,
-     .goog-te-tooltip,
-     .goog-te-spinner {
-         display: none !important;
-     }
+    /* Hide Google branding and tooltips */
+    .goog-te-gadget img,
+    .goog-te-banner-frame,
+    .skiptranslate > iframe.skiptranslate,
+    .goog-tooltip,
+    .goog-te-tooltip,
+    .goog-te-spinner {
+        display: none !important;
+    }
 
-     /* Style the dropdown menu items - slightly smaller */
-     .goog-te-menu-frame {
-         max-height: 250px !important; /* Reduced height */
-         overflow-y: auto !important;
-         border-radius: 4px !important;
-         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
-     }
+    /* Style the dropdown menu items - slightly larger font */
+    .goog-te-menu-frame {
+        max-height: 250px !important;
+        overflow-y: auto !important;
+        border-radius: 4px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    }
 
-     .goog-te-menu2-item span.text,
-     .goog-te-menu2-item div.text {
-         font-family: 'Poppins', sans-serif !important;
-         font-size: 12px !important; /* Smaller font */
-         color: #333 !important;
-         padding: 6px 10px !important; /* Slightly smaller padding */
-     }
+    .goog-te-menu2-item span.text,
+    .goog-te-menu2-item div.text {
+        font-family: 'Poppins', sans-serif !important;
+        font-size: 13px !important; /* Slightly increased from 12px to 13px for dropdown items */
+        color: #333 !important;
+        padding: 6px 10px !important;
+    }
 
-     .goog-te-menu2-item:hover {
-         background-color: #e8f5e9 !important;
-     }
+    .goog-te-menu2-item:hover {
+        background-color: #e8f5e9 !important;
+    }
 
-     /* Prevent layout shift */
-     body {
-         top: 0 !important;
-         position: relative !important;
-         margin: 0 !important;
-     }
+    /* Prevent layout shift */
+    body {
+        top: 0 !important;
+        position: relative !important;
+        margin: 0 !important;
+    }
 
-     html, body {
-         height: 100%;
-         min-height: 100vh;
-         background-size: cover;
-         background-repeat: no-repeat;
-         background-attachment: fixed;
-         margin: 0;
-         padding: 0;
-     }
+    html, body {
+        height: 100%;
+        min-height: 100vh;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        margin: 0;
+        padding: 0;
+    }
 
-     /* Mobile Adjustments */
-     @media (max-width: 768px) {
-         #google_translate_element {
-             bottom: 15px; /* Closer to bottom on mobile */
-             right: 10px;
-             padding: 3px;
-         }
-         .goog-te-gadget-simple {
-             padding: 3px 6px !important;
-             font-size: 11px !important;
-         }
-     }
+    /* Mobile Adjustments */
+    @media (max-width: 768px) {
+        #google_translate_element {
+            bottom: 15px;
+            right: 10px;
+            padding: 3px;
+        }
+        .goog-te-gadget-simple {
+            padding: 6px 10px !important; /* Slightly smaller padding for mobile, still taller */
+            font-size: 13px !important; /* Slightly smaller but increased from 11px */
+        }
+    }
 
-     @media (max-width: 480px) {
-         #google_translate_element {
-             bottom: 10px;
-             right: 5px;
-         }
-         .goog-te-gadget-simple {
-             padding: 2px 5px !important;
-             font-size: 10px !important;
-         }
-     }
+    @media (max-width: 480px) {
+        #google_translate_element {
+            bottom: 10px;
+            right: 5px;
+        }
+        .goog-te-gadget-simple {
+            padding: 5px 8px !important; /* Adjusted for smallest screens */
+            font-size: 12px !important; /* Slightly smaller but increased from 10px */
+        }
+    }
 
-     /* Mobile Landscape */
-     @media (max-width: 768px) and (orientation: landscape) {
-         #google_translate_element {
-             bottom: 10px;
-             right: 10px;
-             padding: 3px;
-         }
-         .goog-te-gadget-simple {
-             padding: 3px 6px !important;
-             font-size: 11px !important;
-         }
-     }
- </style>
+    /* Mobile Landscape */
+    @media (max-width: 768px) and (orientation: landscape) {
+        #google_translate_element {
+            bottom: 10px;
+            right: 10px;
+            padding: 3px;
+        }
+        .goog-te-gadget-simple {
+            padding: 6px 10px !important;
+            font-size: 13px !important;
+        }
+    }
+</style>
 </body>
 </html>
