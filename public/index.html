@@ -737,7 +737,7 @@
 
             <!-- Direct Sales -->
             <div class="form-group">
-                <label>Interested in selling directly?</label>
+                <label>Interested in selling directly to Consumer/Dealer?</label>
                 <div class="radio-group">
                     <div class="radio-option">
                         <input type="radio" id="directSaleYes" name="directSale" value="Yes">
@@ -883,7 +883,7 @@
         //         document.getElementById('thankYouPage').style.display = 'none';
         //     }
         // };
-
+    
         // Progress Bar
         const form = document.getElementById('farmerSurvey');
         const progressBar = document.getElementById('progressBar');
@@ -893,115 +893,384 @@
             inputs.forEach(input => { if (input.value) filled++; });
             progressBar.style.width = `${(filled / inputs.length) * 100}%`;
         });
-
+    
         function updateRealTime() {
-    const realTimeDisplay = document.getElementById('realTimeDisplay');
-    const now = new Date();
-    realTimeDisplay.textContent = now.toLocaleString('en-US', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        timeZoneName: 'short'
-    });
-}
-
-// Update time every second
-setInterval(updateRealTime, 1000);
-
-// Initial call to display time immediately
-updateRealTime();
-
-// Form Submission with Google Sheets Integration
-async function submitForm(event) {
-    event.preventDefault();
-
-    // Show loading spinner
-    const loadingOverlay = document.getElementById('loadingOverlay');
-    loadingOverlay.style.display = 'flex';
-
-    // Collect form data
-    const formData = new FormData(form);
-    const data = {};
-    formData.forEach((value, key) => {
-        if (key === 'challenges' || key === 'priceInfo') {
-            if (!data[key]) data[key] = [];
-            data[key].push(value);
-        } else {
-            data[key] = value;
-        }
-    });
-
-    // Add real-time submission timestamp
-    const submissionTime = new Date().toISOString(); // ISO format for consistency
-    data.submissionTime = submissionTime;
-    document.getElementById('submissionTime').value = submissionTime; // Update hidden input
-
-    // Get the farmer's name
-    const farmerName = document.getElementById('name').value;
-
-    // Transition to Thank You page
-    document.getElementById('mainForm').style.display = 'none';
-    document.getElementById('thankYouPage').style.display = 'block';
-    document.getElementById('thankYouMessage').textContent = `Thank You, ${farmerName}!`;
-    loadingOverlay.style.display = 'none';
-
-    // Check WhatsApp eligibility
-    const state = document.getElementById('state') ? document.getElementById('state').value : localStorage.getItem('submittedState');
-    if (['Karnataka', 'Andhra Pradesh', 'Tamil Nadu'].includes(state)) {
-        document.getElementById('whatsappJoinSection').style.display = 'block';
+        const realTimeDisplay = document.getElementById('realTimeDisplay');
+        const now = new Date();
+        const istOptions = {
+            timeZone: 'Asia/Kolkata',
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: true
+        };
+        realTimeDisplay.textContent = now.toLocaleString('en-US', istOptions) + ' IST';
     }
 
-    // Mark form as submitted and save name/state in localStorage
-    localStorage.setItem('formSubmitted', 'true');
-    localStorage.setItem('farmerName', farmerName);
-    localStorage.setItem('submittedState', state);
+    setInterval(updateRealTime, 1000);
+    updateRealTime();
 
-    // Send data to Google Sheets in the background
-    try {
-        await fetch('https://script.google.com/macros/s/AKfycbyUnX92mixXZdDlEs2ur9Diynd2qIgs7cmesj9rhMrYfCohXC3vP6aUaWjhFy-Wf4TE/exec', {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data),
+    // Form Submission with IST display
+    async function submitForm(event) {
+        event.preventDefault();
+
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        loadingOverlay.style.display = 'flex';
+
+        const formData = new FormData(form);
+        const data = {};
+        formData.forEach((value, key) => {
+            if (key === 'challenges' || key === 'priceInfo') {
+                if (!data[key]) data[key] = [];
+                data[key].push(value);
+            } else {
+                data[key] = value;
+            }
         });
-    } catch (error) {
-        console.error('Error:', error);
-        alert('There was a network error submitting your data. We’ve recorded your submission locally, but please check your connection if you don’t receive confirmation.');
+
+        // Get IST timestamp for Google Sheets (DD-MM-YYYY HH:MM:SS IST)
+        const now = new Date();
+        const istOptionsSheets = {
+            timeZone: 'Asia/Kolkata',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        };
+        const formatterSheets = new Intl.DateTimeFormat('en-IN', istOptionsSheets);
+        const [
+            { value: day },,
+            { value: month },,
+            { value: year },,
+            { value: hour },,
+            { value: minute },,
+            { value: second }
+        ] = formatterSheets.formatToParts(now);
+        const submissionTimeSheets = `${day}-${month}-${year} ${hour}:${minute}:${second} IST`;
+        data.submissionTime = submissionTimeSheets;
+        document.getElementById('submissionTime').value = submissionTimeSheets;
+
+        // Get IST timestamp for display (Friday, March 14, 2025 at 12:59:57 AM)
+        const istOptionsDisplay = {
+            timeZone: 'Asia/Kolkata',
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true
+        };
+        const submissionTimeDisplay = now.toLocaleString('en-US', istOptionsDisplay);
+
+        // Get farmer's name
+        const farmerName = document.getElementById('name').value;
+
+        // Transition to Thank You page
+        document.getElementById('mainForm').style.display = 'none';
+        const thankYouPage = document.getElementById('thankYouPage');
+        thankYouPage.style.display = 'block';
+        document.getElementById('thankYouMessage').textContent = `Thank You, ${farmerName}!`;
+
+        // Add submission time to Thank You page
+        const submissionTimeElement = document.createElement('p');
+        submissionTimeElement.innerHTML = `Form Submitted: <strong>${submissionTimeDisplay}</strong>`;
+        submissionTimeElement.style.margin = '20px 0';
+        thankYouPage.insertBefore(submissionTimeElement, document.getElementById('whatsappJoinSection'));
+
+        loadingOverlay.style.display = 'none';
+
+        // WhatsApp eligibility
+        const state = document.getElementById('state') ? document.getElementById('state').value : localStorage.getItem('submittedState');
+        if (['Karnataka', 'Andhra Pradesh', 'Tamil Nadu'].includes(state)) {
+            document.getElementById('whatsappJoinSection').style.display = 'block';
+        }
+
+        // LocalStorage
+        localStorage.setItem('formSubmitted', 'true');
+        localStorage.setItem('farmerName', farmerName);
+        localStorage.setItem('submittedState', state);
+
+        // Send to Google Sheets
+        try {
+            await fetch('https://script.google.com/macros/s/AKfycbyUnX92mixXZdDlEs2ur9Diynd2qIgs7cmesj9rhMrYfCohXC3vP6aUaWjhFy-Wf4TE/exec', {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
+            console.log('Form submitted successfully');
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Network error occurred. Submission recorded locally.');
+        }
     }
-}
 
-        // Share Functionality
-        function shareForm(platform) {
-            const url = window.location.href;
-            const shareText = "Join KISSAN 4.0 to upgrade your farming! Check it out: ";
-            if (platform === 'whatsapp') {
-                window.open(`https://wa.me/?text=${encodeURIComponent(shareText + url)}`);
-            }
+    // Share Functionality (unchanged)
+    function shareForm(platform) {
+        const url = window.location.href;
+        const shareText = "Join KISSAN 4.0 to upgrade your farming! Check it out: ";
+        let shareUrl;
+        switch(platform) {
+            case 'whatsapp':
+                shareUrl = `https://wa.me/?text=${encodeURIComponent(shareText + url)}`;
+                break;
+            case 'facebook':
+                shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+                break;
+            case 'twitter':
+                shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`;
+                break;
         }
+        if (shareUrl) window.open(shareUrl, '_blank');
+    }
 
-        // WhatsApp Eligibility
-        function checkWhatsAppEligibility() {
-            const state = document.getElementById('state').value;
-            const whatsappOption = document.getElementById('whatsappGroupOption');
-            whatsappOption.style.display = ['Karnataka', 'Andhra Pradesh', 'Tamil Nadu'].includes(state) ? 'block' : 'none';
-        }
+    // WhatsApp Eligibility (unchanged)
+    function checkWhatsAppEligibility() {
+        const state = document.getElementById('state').value;
+        const whatsappOption = document.getElementById('whatsappGroupOption');
+        whatsappOption.style.display = ['Karnataka', 'Andhra Pradesh', 'Tamil Nadu'].includes(state) ? 'block' : 'none';
+    }
 
-        // Check WhatsApp eligibility on page load for Thank You page
-        function checkWhatsAppOnLoad() {
-            const submittedState = localStorage.getItem('submittedState');
-            if (['Karnataka', 'Andhra Pradesh', 'Tamil Nadu'].includes(submittedState)) {
-                document.getElementById('whatsappJoinSection').style.display = 'block';
-            }
+    function checkWhatsAppOnLoad() {
+        const submittedState = localStorage.getItem('submittedState');
+        if (['Karnataka', 'Andhra Pradesh', 'Tamil Nadu'].includes(submittedState)) {
+            document.getElementById('whatsappJoinSection').style.display = 'block';
         }
+    }
 
-        // Join WhatsApp Group
-        function joinWhatsAppGroup() {
-            alert('You’ll be added to the WhatsApp group soon!');
+    function joinWhatsAppGroup() {
+        const phone = document.getElementById('phone')?.value || localStorage.getItem('farmerPhone');
+        if (phone) {
+            alert(`You’ll be added to the WhatsApp group soon! We'll contact you at ${phone}`);
+            localStorage.setItem('farmerPhone', phone);
+        } else {
+            alert('Please provide your phone number to join the WhatsApp group.');
         }
+    }
     </script>
+
+ <!-- Google Translate Widget -->
+ <div id="google_translate_element"></div>
+
+ <script type="text/javascript">
+     function googleTranslateElementInit() {
+         new google.translate.TranslateElement({
+             pageLanguage: 'en',
+             includedLanguages: 'en,hi,mr,ta,te,kn,ml,gu,pa,bn,or,as,ur,sa',
+             layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+             autoDisplay: false,
+             gaTrack: true
+         }, 'google_translate_element');
+
+         setTimeout(function() {
+             disableHoverTooltip();
+             setNativeLanguageNames();
+         }, 2000);
+     }
+
+     function disableHoverTooltip() {
+         document.body.addEventListener('mouseover', function(e) {
+             e.stopPropagation();
+         }, true);
+
+         const tooltips = document.querySelectorAll('.goog-tooltip, .goog-te-tooltip');
+         tooltips.forEach(tooltip => {
+             tooltip.style.display = 'none !important';
+         });
+     }
+
+     function setNativeLanguageNames() {
+         const nativeLanguages = {
+             'en': 'English', 'hi': 'हिन्दी', 'mr': 'मराठी', 'ta': 'தமிழ்', 'te': 'తెలుగు',
+             'kn': 'ಕನ್ನಡ', 'ml': 'മലയാളം', 'gu': 'ગુજરાતી', 'pa': 'ਪੰਜਾਬੀ', 'bn': 'বাংলা',
+             'or': 'ଓଡ଼ିଆ', 'as': 'অসমীয়া', 'ur': 'اردو', 'sa': 'संस्कृतम्'
+         };
+
+         let attempts = 0;
+         const maxAttempts = 10;
+         const checkDropdown = setInterval(() => {
+             const menuFrame = document.querySelector('iframe.goog-te-menu-frame');
+             if (menuFrame) {
+                 const menuDoc = menuFrame.contentDocument || menuFrame.contentWindow.document;
+                 const menuItems = menuDoc.querySelectorAll('.goog-te-menu2-item div.text, .goog-te-menu2-item span.text');
+
+                 if (menuItems.length > 0) {
+                     menuItems.forEach(item => {
+                         const parent = item.closest('.goog-te-menu2-item');
+                         if (parent) {
+                             const onclick = parent.getAttribute('onclick') || '';
+                             const langCodeMatch = onclick.match(/'([^']+)'/);
+                             const langCode = langCodeMatch ? langCodeMatch[1] : null;
+
+                             if (langCode && nativeLanguages[langCode]) {
+                                 item.textContent = nativeLanguages[langCode];
+                             }
+                         }
+                     });
+                     clearInterval(checkDropdown);
+                     console.log('Native language names applied successfully');
+                 }
+             }
+
+             attempts++;
+             if (attempts >= maxAttempts) {
+                 clearInterval(checkDropdown);
+                 console.warn('Failed to apply native language names after maximum attempts');
+             }
+         }, 500);
+     }
+
+     window.addEventListener("pageshow", function (event) {
+         if (!document.querySelector(".goog-te-gadget") && event.persisted) {
+             googleTranslateElementInit();
+         }
+     });
+
+     window.addEventListener("load", function () {
+         if (!document.querySelector(".goog-te-gadget")) {
+             googleTranslateElementInit();
+         }
+     });
+ </script>
+
+ <!-- Load Google Translate API -->
+ <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+ <style>
+     /* Positioning the Google Translate Widget at bottom-right */
+     #google_translate_element {
+         position: fixed;
+         bottom: 20px; /* Position from bottom */
+         right: 20px;  /* Position from right */
+         z-index: 1000;
+         background-color: rgba(255, 255, 255, 0.95);
+         padding: 4px; /* Reduced padding for smaller size */
+         border-radius: 6px;
+         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+     }
+
+     /* Styling the Google Translate dropdown - smaller size */
+     .goog-te-gadget-simple {
+         border: 1px solid #388e3c !important;
+         border-radius: 4px !important;
+         padding: 4px 8px !important; /* Smaller padding */
+         font-family: 'Poppins', sans-serif !important;
+         font-size: 12px !important; /* Smaller font size */
+         background-color: #4caf50 !important;
+         color: #fff !important;
+         cursor: pointer !important;
+         transition: all 0.3s ease !important;
+         display: inline-flex !important;
+         align-items: center !important;
+     }
+
+     .goog-te-gadget-simple:hover {
+         background-color: #388e3c !important;
+         border-color: #2e7d32 !important;
+         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+     }
+
+     .goog-te-gadget-simple .goog-te-menu-value {
+         color: #fff !important;
+         text-decoration: none !important;
+         margin: 0 !important;
+     }
+
+     .goog-te-gadget-simple .goog-te-menu-value span {
+         color: #fff !important;
+     }
+
+     /* Hide Google branding and tooltips */
+     .goog-te-gadget img,
+     .goog-te-banner-frame,
+     .skiptranslate > iframe.skiptranslate,
+     .goog-tooltip,
+     .goog-te-tooltip,
+     .goog-te-spinner {
+         display: none !important;
+     }
+
+     /* Style the dropdown menu items - slightly smaller */
+     .goog-te-menu-frame {
+         max-height: 250px !important; /* Reduced height */
+         overflow-y: auto !important;
+         border-radius: 4px !important;
+         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+     }
+
+     .goog-te-menu2-item span.text,
+     .goog-te-menu2-item div.text {
+         font-family: 'Poppins', sans-serif !important;
+         font-size: 12px !important; /* Smaller font */
+         color: #333 !important;
+         padding: 6px 10px !important; /* Slightly smaller padding */
+     }
+
+     .goog-te-menu2-item:hover {
+         background-color: #e8f5e9 !important;
+     }
+
+     /* Prevent layout shift */
+     body {
+         top: 0 !important;
+         position: relative !important;
+         margin: 0 !important;
+     }
+
+     html, body {
+         height: 100%;
+         min-height: 100vh;
+         background-size: cover;
+         background-repeat: no-repeat;
+         background-attachment: fixed;
+         margin: 0;
+         padding: 0;
+     }
+
+     /* Mobile Adjustments */
+     @media (max-width: 768px) {
+         #google_translate_element {
+             bottom: 15px; /* Closer to bottom on mobile */
+             right: 10px;
+             padding: 3px;
+         }
+         .goog-te-gadget-simple {
+             padding: 3px 6px !important;
+             font-size: 11px !important;
+         }
+     }
+
+     @media (max-width: 480px) {
+         #google_translate_element {
+             bottom: 10px;
+             right: 5px;
+         }
+         .goog-te-gadget-simple {
+             padding: 2px 5px !important;
+             font-size: 10px !important;
+         }
+     }
+
+     /* Mobile Landscape */
+     @media (max-width: 768px) and (orientation: landscape) {
+         #google_translate_element {
+             bottom: 10px;
+             right: 10px;
+             padding: 3px;
+         }
+         .goog-te-gadget-simple {
+             padding: 3px 6px !important;
+             font-size: 11px !important;
+         }
+     }
+ </style>
 </body>
 </html>
