@@ -814,7 +814,7 @@
             <!-- Reward Box -->
             <div class="reward-box">
                 <h3>Unlock Your Reward!</h3>
-                <p>Submit now for <strong>₹10 cashback</strong> + a chance to win FREE KISSAN 4.0 tools!</p>
+                <p>Submit now for <strong>Barosa ₹10</strong> + a chance to win FREE KISSAN 4.0 tools!</p>
             </div>
 <!-- Add hidden input for submission time -->
 <input type="hidden" id="submissionTime" name="submissionTime">
@@ -835,7 +835,7 @@
                 <textarea id="comments" name="comments" rows="4" placeholder="Tell us more..."></textarea>
             </div>
 
-            <button type="submit">Claim My Farming Upgrade Now!</button>
+            <button type="submit">Submit Now!</button>
         </form>
 
         <footer>
@@ -851,12 +851,12 @@
         <p>Your info is in! Expect personalized farming tips soon.</p>
         <div class="reward-box">
             <h3>Congratulations!</h3>
-            <p>You’ve earned <strong>₹10 cashback</strong> – credited soon!</p>
+            <p>You’ve earned <strong>Barosa ₹10</strong> – credited soon!</p>
         </div>
         <div id="whatsappJoinSection" style="display: none; margin-top: 30px;">
             <h3 style="color: #075e54;">Join Your WhatsApp Community</h3>
             <p>Connect with farmers & experts in your state!</p>
-            <button style="background: #128C7E;" onclick="joinWhatsAppGroup()">Join Now</button>
+            <button style="background: #128C7E;" onclick="window.location.href='https://chat.whatsapp.com/FFwb7dnuw2kKbQAkABxbkY'">Join Now</button>
         </div>
         <p style="margin-top: 20px;">Share with friends to spread the word!</p>
         <button class="whatsapp-share-btn" onclick="shareForm('whatsapp')">
@@ -868,21 +868,21 @@
     </div>
     <script>
         // Check if the form has already been submitted on page load
-        window.onload = function () {
-            const hasSubmitted = localStorage.getItem('formSubmitted');
-            if (hasSubmitted === 'true') {
-                document.getElementById('mainForm').style.display = 'none';
-                document.getElementById('thankYouPage').style.display = 'block';
-                const savedName = localStorage.getItem('farmerName');
-                if (savedName) {
-                    document.getElementById('thankYouMessage').textContent = `Thank You, ${savedName}!`;
-                }
-                checkWhatsAppOnLoad();
-            } else {
-                document.getElementById('mainForm').style.display = 'block';
-                document.getElementById('thankYouPage').style.display = 'none';
-            }
-        };
+        // window.onload = function () {
+        //     const hasSubmitted = localStorage.getItem('formSubmitted');
+        //     if (hasSubmitted === 'true') {
+        //         document.getElementById('mainForm').style.display = 'none';
+        //         document.getElementById('thankYouPage').style.display = 'block';
+        //         const savedName = localStorage.getItem('farmerName');
+        //         if (savedName) {
+        //             document.getElementById('thankYouMessage').textContent = `Thank You, ${savedName}!`;
+        //         }
+        //         checkWhatsAppOnLoad();
+        //     } else {
+        //         document.getElementById('mainForm').style.display = 'block';
+        //         document.getElementById('thankYouPage').style.display = 'none';
+        //     }
+        // };
     
         // Progress Bar
         const form = document.getElementById('farmerSurvey');
@@ -1026,7 +1026,7 @@
                 shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
                 break;
             case 'twitter':
-                shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`;
+                shareUrl = `https://www.instagram.com/`;
                 break;
         }
         if (shareUrl) window.open(shareUrl, '_blank');
